@@ -1,21 +1,21 @@
 ---
 title: "Laporan Akhir Proyek Probabilitas dan Statistika"
 subtitle: "Analisis Data Pembangunan Wilayah Menggunakan R"
-author: |
-  | **Mata Kuliah:** Probabilitas dan Statistika
-  | **Program Studi:** Teknologi Rekayasa Perangkat Lunak
-  | **Tahun Akademik:** 2025/2026
-  | 
-  | **Disusun Oleh:**
-  | 1. Lumaris Satya Dwinanto (J0403251143)
-  | 2. Mohammad Azmi Zaeni (J0403251120)
-  | 3. Muhammad Yusuf Baihaqi Bawono (J0403251096)
-  | 4. Muhammad Hilmi Musyaffa (J0403251132)
-  | 5. Muhammad Rafly (J0403251002)
-  | 6. Ilyas Najwan Pratama (J0403251081)
 date: "31 Mei 2026"
-output: word_document
+output: pdf_document
 ---
+
+**Mata Kuliah:** Probabilitas dan Statistika\
+**Program Studi:** Teknologi Rekayasa Perangkat Lunak\
+**Tahun Akademik:** 2025/2026\
+
+**Disusun Oleh:**\
+1. Lumaris Satya Dwinanto (J0403251143)\
+2. Mohammad Azmi Zaeni (J0403251120)\
+3. Muhammad Yusuf Baihaqi Bawono (J0403251096)\
+4. Muhammad Hilmi Musyaffa (J0403251132)\
+5. Muhammad Rafly (J0403251002)\
+6. Ilyas Najwan Pratama (J0403251081)\
 
 \newpage
 
@@ -81,43 +81,54 @@ Tahapan pengolahan data statistik yang diterapkan dalam proyek ini mengacu pada 
 
 # BAB III HASIL DAN PEMBAHASAN
 
-## 3.1 Memahami Struktur Dataset
+## 3.1 Memahami Dataset
 
-Langkah awal dalam analisis ini adalah mengeksplorasi karakteristik struktural dari dataset `pembangunan_wilayah_missing_outlier.csv` menggunakan fungsi `head()`, `summary()`, `dim()`, dan `str()`. Berdasarkan *output* dari RStudio, dataset awal memiliki dimensi sebanyak **2500 baris (observasi)** dan **13 kolom (variabel)**.
+Langkah awal dalam analisis ini adalah mengeksplorasi karakteristik struktural dari dataset utama menggunakan fungsi dasar di R. Berdasarkan output dari RStudio, dataset awal memiliki dimensi sebanyak **2500 baris (observasi)** dan **13 kolom (variabel)**.
 
-Berdasarkan pengecekan struktur, dataset ini memuat data karakter (`chr`) untuk informasi kewilayahan, tipe integer (`int`) untuk variabel tahun, serta tipe numerik desimal (`num`) untuk indikator pembangunan. Eksplorasi awal ini penting untuk memastikan bahwa R membaca format setiap kolom dengan benar sebelum dilakukan komputasi statistik lebih lanjut.
+Secara operasional, dataset ini merekam berbagai indikator sosial dan infrastruktur dengan penjelasan variabel sebagai berikut:
+
+-   **wilayah & provinsi:** (Karakter) Identitas administratif kabupaten/kota dan provinsi tempat observasi dilakukan.
+-   **tahun:** (Integer) Tahun pengambilan data indikator pembangunan (2020-2024).
+-   **pdrb_perkapita:** (Numerik) Produk Domestik Regional Bruto per kapita, mengukur rata-rata produktivitas ekonomi daerah.
+-   **kemiskinan:** (Numerik) Persentase penduduk yang hidup di bawah garis kemiskinan.
+-   **pengangguran:** (Numerik) Tingkat Pengangguran Terbuka (TPT) di wilayah tersebut.
+-   **ipm:** (Numerik) Indeks Pembangunan Manusia, mengukur capaian kesehatan, pendidikan, dan standar hidup.
+-   **harapan_hidup:** (Numerik) Angka harapan hidup saat lahir sebagai indikator derajat kesehatan esensial.
+-   **rata_lama_sekolah:** (Numerik) Rata-rata jumlah tahun yang dihabiskan penduduk untuk menempuh pendidikan formal.
+-   **akses_internet, jalan_baik, air_bersih:** (Numerik) Persentase rumah tangga atau area yang terjangkau oleh infrastruktur tersebut.
+
+Eksplorasi awal ini penting untuk memastikan bahwa R membaca format setiap kolom dengan benar sebelum dilakukan komputasi statistik lebih lanjut.
 
 ```{r pemahaman-dataset, message=FALSE, warning=FALSE}
 # Load library yang dibutuhkan
 library(dplyr)
 library(ggplot2)
+library(knitr)
 
 # Membaca dataset
 data <- read.csv("../dataset/pembangunan_wilayah_missing_outlier.csv")
 
 # Eksplorasi struktur dan dimensi awal data
-print("--- 6 Baris Teratas Dataset ---")
-head(data)
-
-print("--- Ringkasan Dataset ---")
-summary(data)
-
 print("--- Dimensi Dataset ---")
 dim(data)
 
 print("--- Struktur Variabel Dataset ---")
-str(data)
+# Menggunakan glimpse() sebagai pengganti str() agar output terlipat rapi
+glimpse(data)
+
+# Membatasi tampilan tabel hanya 5 kolom pertama agar tidak keluar margin kertas
+kable(head(data[, 1:5]), caption = "Lima Kolom Pertama dari Enam Baris Teratas Dataset")
 ```
 
 ## 3.2 Analisis Statistika Deskriptif
 
 Analisis statistik deskriptif dilakukan untuk melihat ringkasan ukuran pemusatan dan penyebaran data awal. Untuk menghindari *error* pada tipe data karakter, pemisahan variabel numerik dilakukan terlebih dahulu memanfaatkan *library* `dplyr` melalui fungsi `select(where(is.numeric))`. Setelah itu, perhitungan rata-rata, median, standar deviasi, varians, dan kuartil dihitung menggunakan fungsi `sapply()` dengan menambahkan argumen `na.rm = TRUE` agar kalkulasi tidak terganggu oleh data kosong.
 
-Berikut adalah ringkasan parameter deskriptif dasar yang diperoleh dari data awal:
+Berdasarkan komputasi dari eksekusi fungsi dasar statistik, diperoleh beberapa temuan utama:
 
--   **PDRB per Kapita:** Memiliki rata-rata (*mean*) sebesar **135.650.462** dan nilai tengah (*median*) sebesar **137.310.624**. Nilai rata-rata dan median yang cukup berdekatan ini memberikan indikasi awal bahwa secara umum distribusi data ekonomi cukup berimbang, meskipun nanti akan dievaluasi lebih lanjut keberadaan nilai ekstremnya.
+-   **Variabel dengan Rata-Rata dan Penyebaran Tertinggi:** Variabel `pdrb_perkapita` menjadi indikator dengan **nilai rata-rata tertinggi** (135.650.462) sekaligus memiliki **penyebaran (varians dan standar deviasi) yang paling besar**. Hal ini sangat logis mengingat PDRB direkam dalam satuan mata uang absolut dengan skala rasio yang besar, sehingga variasinya antardaerah akan terlihat sangat ekstrem dibandingkan variabel lain yang direkam dalam satuan persentase.
+-   **Indikasi Data Tidak Normal:** Terdapat petunjuk kuat adanya sebaran data yang tidak normal pada beberapa variabel. Sebagai contoh, rata-rata kemiskinan berada di angka **13,72%** namun memiliki simpangan baku (standar deviasi) yang cukup tinggi yaitu **6,89**. Selisih yang signifikan antara rata-rata dan median pada variabel makro juga memberikan sinyal adanya kemencengan distribusi (*skewness*) akibat keberadaan kelompok minoritas data pencilan (*outlier*), yang akan ditelusuri lebih lanjut pada tahapan analisis outlier.
 -   **Indeks Pembangunan Manusia (IPM):** Berada pada rentang nilai minimum **55,01** hingga maksimum **84,99**, dengan rata-rata capaian nasional sebesar **69,90**.
--   **Kemiskinan:** Tingkat kemiskinan memiliki rata-rata sebesar **13,72%** dengan standar deviasi **6,89**. Nilai simpangan baku yang cukup besar ini mengonfirmasi adanya variasi ketimpangan kondisi sosial yang lumayan lebar antar-wilayah.
 
 ```{r stat-deskriptif}
 # Memisahkan variabel numerik saja untuk kalkulasi statistik
@@ -198,7 +209,10 @@ Q3 <- quantile(data_bersih$pdrb_perkapita, 0.75)
 IQR <- Q3 - Q1
 lower <- Q1 - 1.5 * IQR
 upper <- Q3 + 1.5 * IQR
-data_bersih$pdrb_perkapita <- pmin(pmax(data_bersih$pdrb_perkapita, lower), upper)
+data_bersih$pdrb_perkapita <- pmin(
+  pmax(data_bersih$pdrb_perkapita, lower), 
+  upper
+)
 
 # 2. Kemiskinan
 Q1 <- quantile(data_bersih$kemiskinan, 0.25)
@@ -235,10 +249,10 @@ hitung_outlier(data_bersih$pengangguran)
 
 ## 3.5 Visualisasi Data
 
-Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan metode agregasi `group_by()` dan `summarise()` dari *library* `dplyr`. Data dihitung rata-ratanya berdasarkan pengelompokan `provinsi` dan `tahun`. Pembuatan grafik menggunakan *library* `ggplot2` menghasilkan visualisasi informatif terkait persentase pengangguran, tren tingkat kemiskinan, capaian pertumbuhan ekonomi (PDRB), peringkat IPM, dan angka harapan hidup.
+Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan metode agregasi `group_by()` dan `summarise()` dari *library* `dplyr`. Data dihitung rata-ratanya berdasarkan pengelompokan `provinsi` dan `tahun`. Pembuatan grafik menggunakan *library* `ggplot2` menghasilkan 5 visualisasi informatif yang telah dilengkapi dengan judul dan label sumbu yang jelas.
 
-```{r visualisasi-data, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
-# Agregasi data
+```{r vis-agregasi-1, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
+# Agregasi data untuk kebutuhan visualisasi
 filtered_mean_data <- data_bersih %>%
   group_by(provinsi, tahun) %>%
   summarise(
@@ -267,9 +281,19 @@ ggplot(filtered_mean_data,
     fill = "Tahun"
   ) +
   theme_minimal() +
-  scale_fill_manual(values = c("#FDE0DD", "#FCAE91", "#FB6A4A", "#DE2D26", "#A50F15")) +
+  scale_fill_manual(values = c("#FDE0DD", "#FCAE91", 
+                               "#FB6A4A", "#DE2D26", 
+                               "#A50F15")) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
+**Penjelasan Grafik 1 (Bar Chart Pengangguran)**
+
+**Isi Grafik:** Grafik ini membandingkan tingkat pengangguran terbuka antar-provinsi. Sumbu X merepresentasikan nama provinsi, sumbu Y menunjukkan persentase pengangguran, dan gradasi warna batang menunjukkan urutan tahun pengamatan (2020-2024). **Kesimpulan:** Terdapat disparitas penyerapan tenaga kerja yang mencolok antar-daerah. Provinsi Sulawesi selatan secara konsisten mencatatkan angka pengangguran tertinggi selama lima tahun, sementara provinsi Banten memiliki tingkat pengangguran paling rendah dan stabil.
+
+------------------------------------------------------------------------
+
+```{r vis-2, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
 # 2. Boxplot Kemiskinan
 ggplot(data_bersih,
        aes(x = factor(tahun),
@@ -283,7 +307,13 @@ ggplot(data_bersih,
   ) +
   theme_minimal() +
   guides(fill = "none")
+```
 
+**Penjelasan Grafik 2 (Boxplot Kemiskinan)** \* **Isi Grafik:** Visualisasi ini memotret sebaran persentase penduduk miskin secara nasional dari tahun ke tahun. Kotak (*box*) menunjukkan rentang data mayoritas (Kuartil 1 hingga Kuartil 3), sedangkan garis tengah kotak mewakili nilai median kemiskinan pada tahun tersebut. \* **Kesimpulan:** Distribusi tingkat kemiskinan di Indonesia terlihat cenderung meningkat dari tahun 2020 hingga 2024, yang ditandai dengan pergerakan garis median. Tidak terlihat adanya titik-titik di luar batas *whisker*, membuktikan bahwa penanganan pencilan (*outlier*) menggunakan metode Winsorizing pada tahap sebelumnya telah berhasil.
+
+------------------------------------------------------------------------
+
+```{r vis-3, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
 # 3. Line Chart PDRB
 ggplot(filtered_mean_data,
        aes(x = tahun,
@@ -298,7 +328,13 @@ ggplot(filtered_mean_data,
     y = "PDRB Per Kapita"
   ) +
   theme_minimal()
+```
 
+**Penjelasan Grafik 3 (Line Chart PDRB)** \* **Isi Grafik:** Grafik garis ini melacak lintasan pertumbuhan ekonomi (PDRB per kapita) setiap provinsi (sumbu Y) seiring berjalannya waktu dari tahun 2020 hingga 2024 (sumbu X). Masing-masing garis mewakili satu provinsi yang berbeda. \* **Kesimpulan:** Pertumbuhan ekonomi wilayah berjalan dengan kecepatan yang berbeda-beda. Terdapat satu atau beberapa provinsi seperti Jawa Tengah yang lintasan ekonominya memimpin jauh di atas kelompok provinsi lainnya, menunjukkan adanya ketimpangan pusat-pusat pertumbuhan ekonomi.
+
+------------------------------------------------------------------------
+
+```{r vis-4, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
 # 4. Lollipop Chart IPM
 ggplot(filtered_mean_data,
        aes(x = reorder(provinsi, ipm),
@@ -311,7 +347,9 @@ ggplot(filtered_mean_data,
   geom_point(size = 4) +
   coord_flip() +
   scale_y_continuous(limits = c(50, 85)) +
-  scale_color_manual(values = c("#FDE0DD", "#FCAE91", "#FB6A4A", "#DE2D26", "#A50F15")) +
+  scale_color_manual(values = c("#FDE0DD", "#FCAE91", 
+                                "#FB6A4A", "#DE2D26", 
+                                "#A50F15")) +
   labs(
     title = "IPM per Provinsi Berdasarkan Tahun",
     x = "Provinsi",
@@ -319,7 +357,13 @@ ggplot(filtered_mean_data,
     color = "Tahun"
   ) +
   theme_minimal()
+```
 
+**Penjelasan Grafik 4 (Lollipop Chart IPM)** \* **Isi Grafik:** Grafik ini merupakan modifikasi dari *bar chart* yang dirancang untuk mempermudah pembacaan peringkat. Sumbu X menunjukkan Indeks Pembangunan Manusia (IPM) dan sumbu Y adalah nama provinsi. Batas bawah sumbu X diatur pada angka 50 agar perbedaan jarak nilai IPM antar-provinsi terlihat lebih kontras. \* **Kesimpulan:** Terlihat jelas *ranking* kualitas pembangunan manusia antardaerah. Provinsi Banten adalah wilayah dengan capaian kualitas hidup, pendidikan, dan kesehatan paling maju, sedangkan wilayah DKI Jakarta masih tertinggal dan membutuhkan atensi akselerasi pembangunan dasar.
+
+------------------------------------------------------------------------
+
+```{r vis-5, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
 # 5. Heatmap Harapan Hidup
 ggplot(filtered_mean_data,
        aes(x = factor(tahun),
@@ -338,6 +382,8 @@ ggplot(filtered_mean_data,
   ) +
   theme_minimal()
 ```
+
+**Penjelasan Grafik 5 (Heatmap Harapan Hidup)** \* **Isi Grafik:** Visualisasi matriks ini memetakan angka harapan hidup berdasarkan pertemuan antara tahun (sumbu X) dan provinsi (sumbu Y). Intensitas capaian direpresentasikan melalui gradasi warna; warna merah tua menunjukkan angka harapan hidup tinggi, sedangkan merah muda menunjukkan angka yang lebih rendah. \* **Kesimpulan:** Secara keseluruhan, indikator kesehatan masyarakat mengalami tren perbaikan. Hal ini disimpulkan dari perubahan dominasi warna pada grafik yang semakin bergeser ke arah warna merah gelap seiring bertambahnya tahun.
 
 ## 3.6 Analisis Probabilitas dan Distribusi Data
 
