@@ -3,7 +3,7 @@
 #==========================================================
 
 # Membaca dataset
-data <- read.csv("pembangunan_wilayah_missing_outlier.csv")
+data <- read.csv("dataset/pembangunan_wilayah_missing_outlier.csv")
 
 # Menampilkan beberapa data awal
 head(data)
