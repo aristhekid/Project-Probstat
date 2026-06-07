@@ -14,7 +14,7 @@ author: |
   | 5. Muhammad Rafly (J0403251002)
   | 6. Ilyas Najwan Pratama (J0403251081)
 date: "31 Mei 2026"
-output: pdf_document
+output: word_document
 ---
 
 \newpage
@@ -22,164 +22,395 @@ output: pdf_document
 # BAB I PENDAHULUAN
 
 ## 1.1 Latar Belakang
-Pembangunan wilayah merupakan proses krusial dalam meningkatkan kualitas hidup masyarakat melalui pemerataan aspek ekonomi, sosial, pendidikan, kesehatan, dan infrastruktur. Keberhasilan pembangunan ini diukur melalui berbagai indikator makro, seperti Produk Domestik Regional Bruto (PDRB) per kapita, Indeks Pembangunan Manusia (IPM), tingkat kemiskinan, tingkat pengangguran terbuka, serta aksesibilitas terhadap fasilitas dasar. Berdasarkan data Badan Pusat Statistik, pada tahun 2024 IPM Indonesia telah mencapai angka 75,02, dengan tingkat kemiskinan sebesar 9,03%, dan tingkat pengangguran terbuka berada di angka 4,91%. 
+
+Pembangunan wilayah merupakan proses krusial dalam meningkatkan kualitas hidup masyarakat melalui pemerataan aspek ekonomi, sosial, pendidikan, kesehatan, dan infrastruktur. Keberhasilan pembangunan ini diukur melalui berbagai indikator makro, seperti Produk Domestik Regional Bruto (PDRB) per kapita, Indeks Pembangunan Manusia (IPM), tingkat kemiskinan, tingkat pengangguran terbuka, serta aksesibilitas terhadap fasilitas dasar. Berdasarkan data Badan Pusat Statistik, pada tahun 2024 IPM Indonesia telah mencapai angka 75,02, dengan tingkat kemiskinan sebesar 9,03%, dan tingkat pengangguran terbuka berada di angka 4,91%.
 
 Meskipun menunjukkan tren perkembangan, angka makro tersebut menyembunyikan realitas adanya ketimpangan yang lebar antar-kabupaten atau kota di lapangan. Di dalam dunia analisis data, pengolahan data sosial sering kali dihadapkan pada tantangan teknis berupa ketidaklengkapan data (*missing value*) dan adanya anomali nilai ekstrem (*outlier*). Oleh karena itu, eksplorasi berbasis data pada proyek akhir ini memanfaatkan bahasa pemrograman R dan ekosistem RStudio untuk melakukan pembersihan data secara objektif, pengujian distribusi, hingga penarikan kesimpulan statistik yang valid dan dapat direproduksi secara utuh (*reproducible*).
 
 ## 1.2 Tujuan Analisis
+
 Melalui proyek akhir ini, analisis diarahkan untuk memenuhi beberapa target kompetensi dan menjawab rumusan masalah sebagai berikut:
 
-1. Memahami karakteristik struktural, tipe data, dan dimensi dari dataset pembangunan wilayah.
-2. Melakukan eksplorasi statistika deskriptif untuk mengukur nilai pemusatan dan penyebaran data pada setiap variabel numerik.
-3. Mengidentifikasi jumlah dan sebaran data yang hilang (*missing value*) serta menentukan metode penanganan yang tepat.
-4. Mendeteksi keberadaan nilai ekstrem (*outlier*) menggunakan metode statistik yang robust.
-5. Membuat minimal 5 visualisasi data yang informatif (histogram, boxplot, dan scatter plot) untuk mempermudah pembacaan tren.
-6. Menerapkan konsep probabilitas serta menguji normalitas sebaran distribusi data.
-7. Menganalisis keeratan hubungan dan arah korelasi antar-indikator pembangunan wilayah.
-8. Menghasilkan *insight* serta rekomendasi kebijakan yang logis dan objektif berbasis data.
+1.  Memahami karakteristik struktural, tipe data, dan dimensi dari dataset pembangunan wilayah.
+2.  Melakukan eksplorasi statistika deskriptif untuk mengukur nilai pemusatan dan penyebaran data pada setiap variabel numerik.
+3.  Mengidentifikasi jumlah dan sebaran data yang hilang (*missing value*) serta menentukan metode penanganan yang tepat.
+4.  Mendeteksi keberadaan nilai ekstrem (*outlier*) menggunakan metode statistik yang robust.
+5.  Membuat minimal 5 visualisasi data yang informatif (histogram, boxplot, dan scatter plot) untuk mempermudah pembacaan tren.
+6.  Menerapkan konsep probabilitas serta menguji normalitas sebaran distribusi data.
+7.  Menganalisis keeratan hubungan dan arah korelasi antar-indikator pembangunan wilayah.
+8.  Menghasilkan *insight* serta rekomendasi kebijakan yang logis dan objektif berbasis data.
 
----
+------------------------------------------------------------------------
 
 \newpage
 
 # BAB II METODOLOGI
 
 ## 2.1 Deskripsi Dataset
-Dataset utama yang dianalisis dalam proyek ini berjudul `pembangunan_wilayah_missing_outlier.csv`. Dataset ini berisi 2500 observasi dan 13 variabel yang secara sengaja dirancang mengandung *noise* berupa *missing value* dan nilai ekstrem (*outlier*) untuk mencerminkan kompleksitas data mentah di lapangan. Cakupan variabel yang dianalisis meliputi: 
 
-* **wilayah & provinsi:** Identitas administratif unit observasi kabupaten/kota di Indonesia.
-* **tahun:** Periode waktu pengambilan data indikator pembangunan (rentang tahun 2020–2024).
-* **pdrb_perkapita:** Refleksi tingkat produktivitas dan kondisi ekonomi daerah.
-* **kemiskinan & pengangguran:** Indikator tingkat ketimpangan sosial dan penyerapan ketenagakerjaan daerah.
-* **ipm, harapan_hidup, & rata_lama_sekolah:** Representasi dimensi capaian kualitas hidup, kesehatan, dan tingkat pendidikan masyarakat.
-* **akses_internet, jalan_baik, & air_bersih:** Ketersediaan dan kualitas infrastruktur pendukung kesejahteraan wilayah.
+Dataset utama yang dianalisis dalam proyek ini berjudul `pembangunan_wilayah_missing_outlier.csv`. Dataset ini berisi 2500 observasi dan 13 variabel yang secara sengaja dirancang mengandung *noise* berupa *missing value* dan nilai ekstrem (*outlier*) untuk mencerminkan kompleksitas data mentah di lapangan. Cakupan variabel yang dianalisis meliputi:
+
+-   **wilayah & provinsi:** Identitas administratif unit observasi kabupaten/kota di Indonesia.
+-   **tahun:** Periode waktu pengambilan data indikator pembangunan (rentang tahun 2020–2024).
+-   **pdrb_perkapita:** Refleksi tingkat produktivitas dan kondisi ekonomi daerah.
+-   **kemiskinan & pengangguran:** Indikator tingkat ketimpangan sosial dan penyerapan ketenagakerjaan daerah.
+-   **ipm, harapan_hidup, & rata_lama_sekolah:** Representasi dimensi capaian kualitas hidup, kesehatan, dan tingkat pendidikan masyarakat.
+-   **akses_internet, jalan_baik, & air_bersih:** Ketersediaan dan kualitas infrastruktur pendukung kesejahteraan wilayah.
 
 ## 2.2 Tools yang Digunakan
+
 Seluruh proses komputasi, pembersihan data, visualisasi grafik, dan penyusunan laporan diintegrasikan menggunakan ekosistem perangkat lunak **RStudio** dengan bahasa pemrograman **R**. Library utama yang digunakan meliputi paket `tidyverse` (khususnya library `dplyr` untuk manipulasi data dan `ggplot2` untuk pembuatan komponen grafik visual), serta paket `knitr` untuk merakit seluruh alur kerja ke dalam dokumen Markdown agar laporan ini bersifat dapat direproduksi secara utuh (*reproducible*).
 
 ## 2.3 Metode Analisis
+
 Tahapan pengolahan data statistik yang diterapkan dalam proyek ini mengacu pada metode ilmiah terukur yang disesuaikan dengan kondisi data, meliputi:
 
-1. **Statistika Deskriptif:** Menggambarkan karakteristik awal data numerik melalui perhitungan ukuran pemusatan (Mean, Median) dan ukuran penyebaran (Minimum, Maximum, Standar Deviasi, Varians, dan Kuartil) secara efisien menggunakan fungsi `summary()` dan `sapply()`.
+1.  **Statistika Deskriptif:** Menggambarkan karakteristik awal data numerik melalui perhitungan ukuran pemusatan (Mean, Median) dan ukuran penyebaran (Minimum, Maximum, Standar Deviasi, Varians, dan Kuartil) secara efisien menggunakan fungsi `summary()` dan `sapply()`.
 
-2. **Penanganan Missing Value:** Mengidentifikasi sebaran data kosong menggunakan fungsi `colSums(is.na())`. Metode penanganan yang dipilih adalah *Complete Case Analysis* (Listwise Deletion) menggunakan fungsi `na.omit()`, yaitu mengeliminasi atau menghapus seluruh baris observasi yang mengandung nilai kosong agar analisis lanjut menggunakan data yang sepenuhnya valid.
+2.  **Penanganan Missing Value:** Mengidentifikasi sebaran data kosong menggunakan fungsi `colSums(is.na())`. Metode penanganan yang dipilih adalah *Complete Case Analysis* (Listwise Deletion) menggunakan fungsi `na.omit()`, yaitu mengeliminasi atau menghapus seluruh baris observasi yang mengandung nilai kosong agar analisis lanjut menggunakan data yang sepenuhnya valid.
 
-3. **Deteksi dan Penanganan Outlier:** Menapis data anomali ekstrem secara matematis menggunakan metode *Interquartile Range* (IQR) lewat fungsi kustom dengan batas bawah $Q1 - 1.5 \times IQR$ dan batas atas $Q3 + 1.5 \times IQR$ (dibantu visualisasi grafik *Boxplot*). Penanganan pencilan dilakukan menggunakan metode **Winsorizing** lewat fungsi `pmin()` dan `pmax()` untuk menyesuaikan nilai ekstrem ke batas ambang IQR terdekat agar data tidak terbuang.
+3.  **Deteksi dan Penanganan Outlier:** Menapis data anomali ekstrem secara matematis menggunakan metode *Interquartile Range* (IQR) lewat fungsi kustom dengan batas bawah $Q1 - 1.5 \times IQR$ dan batas atas $Q3 + 1.5 \times IQR$ (dibantu visualisasi grafik *Boxplot*). Penanganan pencilan dilakukan menggunakan metode **Winsorizing** lewat fungsi `pmin()` dan `pmax()` untuk menyesuaikan nilai ekstrem ke batas ambang IQR terdekat agar data tidak terbuang.
 
-4. **Uji Distribusi & Probabilitas:** Menguji normalitas sebaran data secara formal pada variabel infrastruktur (`air_bersih`) menggunakan metode *Shapiro-Wilk Test* (`shapiro.test()`). Analisis dilanjutkan dengan menghitung nilai peluang bersyarat atau probabilitas menggunakan pendekatan fungsi kumulatif distribusi normal lewat fungsi `pnorm()`.
+4.  **Uji Distribusi & Probabilitas:** Menguji normalitas sebaran data secara formal pada variabel infrastruktur (`air_bersih`) menggunakan metode *Shapiro-Wilk Test* (`shapiro.test()`). Analisis dilanjutkan dengan menghitung nilai peluang bersyarat atau probabilitas menggunakan pendekatan fungsi kumulatif distribusi normal lewat fungsi `pnorm()`.
 
-5. **Analisis Korelasi:** Mengukur arah, signifikansi, dan kekuatan hubungan linear antar-variabel makro (kasus hubungan variabel `ipm` dan `pengangguran`) menggunakan Koefisien Korelasi *Pearson* via fungsi `cor.test()`. Analisis ini diperkuat dengan skema pengambilan keputusan otomatis menggunakan logika percabangan `if-else` di dalam program R.
+5.  **Analisis Korelasi:** Mengukur arah, signifikansi, dan kekuatan hubungan linear antar-variabel makro (kasus hubungan variabel `ipm` dan `pengangguran`) menggunakan Koefisien Korelasi *Pearson* via fungsi `cor.test()`. Analisis ini diperkuat dengan skema pengambilan keputusan otomatis menggunakan logika percabangan `if-else` di dalam program R.
 
-
-
-
----
+------------------------------------------------------------------------
 
 \newpage
 
 # BAB III HASIL DAN PEMBAHASAN
 
 ## 3.1 Memahami Struktur Dataset
-Langkah awal dalam analisis ini adalah memahami karakteristik struktural dari dataset yang digunakan menggunakan fungsi `dim()` dan `str()`. Berdasarkan output dari RStudio, dataset awal memiliki dimensi sebanyak **2500 baris (observasi)** dan **13 kolom (variabel)**. 
 
-Variabel di dalam dataset terdiri dari tipe data karakter (`chr`) untuk informasi nominal seperti `wilayah`, `provinsi`, dan `catatan_data`. Tipe data integer (`int`) ditemukan pada variabel `tahun`. Sementara itu, 9 variabel indikator pembangunan utama seperti `pdrb_perkapita`, `kemiskinan`, `pengangguran`, `ipm`, `harapan_hidup`, `rata_lama_sekolah`, `akses_internet`, `jalan_baik`, dan `air_bersih` direkam dalam tipe data numerik desimal (`num`).
+Langkah awal dalam analisis ini adalah mengeksplorasi karakteristik struktural dari dataset `pembangunan_wilayah_missing_outlier.csv` menggunakan fungsi `head()`, `summary()`, `dim()`, dan `str()`. Berdasarkan *output* dari RStudio, dataset awal memiliki dimensi sebanyak **2500 baris (observasi)** dan **13 kolom (variabel)**.
+
+Berdasarkan pengecekan struktur, dataset ini memuat data karakter (`chr`) untuk informasi kewilayahan, tipe integer (`int`) untuk variabel tahun, serta tipe numerik desimal (`num`) untuk indikator pembangunan. Eksplorasi awal ini penting untuk memastikan bahwa R membaca format setiap kolom dengan benar sebelum dilakukan komputasi statistik lebih lanjut.
+
+```{r pemahaman-dataset, message=FALSE, warning=FALSE}
+# Load library yang dibutuhkan
+library(dplyr)
+library(ggplot2)
+
+# Membaca dataset
+data <- read.csv("../dataset/pembangunan_wilayah_missing_outlier.csv")
+
+# Eksplorasi struktur dan dimensi awal data
+print("--- 6 Baris Teratas Dataset ---")
+head(data)
+
+print("--- Ringkasan Dataset ---")
+summary(data)
+
+print("--- Dimensi Dataset ---")
+dim(data)
+
+print("--- Struktur Variabel Dataset ---")
+str(data)
+```
 
 ## 3.2 Analisis Statistika Deskriptif
-Analisis statistik deskriptif dilakukan pada kondisi data awal untuk melihat ringkasan statistik dasar (Mean, Median, Standar Deviasi, Varians, dan Kuartil) dari seluruh variabel numerik menggunakan bantuan fungsi `summary()` dan `sapply()`. 
+
+Analisis statistik deskriptif dilakukan untuk melihat ringkasan ukuran pemusatan dan penyebaran data awal. Untuk menghindari *error* pada tipe data karakter, pemisahan variabel numerik dilakukan terlebih dahulu memanfaatkan *library* `dplyr` melalui fungsi `select(where(is.numeric))`. Setelah itu, perhitungan rata-rata, median, standar deviasi, varians, dan kuartil dihitung menggunakan fungsi `sapply()` dengan menambahkan argumen `na.rm = TRUE` agar kalkulasi tidak terganggu oleh data kosong.
 
 Berikut adalah ringkasan parameter deskriptif dasar yang diperoleh dari data awal:
-* **PDRB per Kapita:** Memiliki nilai Mean sebesar `[Masukkan nilai Mean PDRB]` dan Median sebesar `[Masukkan nilai Median PDRB]`. Selisih yang jauh antara Mean dan Median ini mengindikasikan adanya kecondongan (*skewness*) pada data ekonomi akibat variasi nilai yang sangat kontras antar-wilayah.
-* **Indeks Pembangunan Manusia (IPM):** Berada pada rentang nilai Minimum `[Nilai Min IPM]` hingga Maksimum `[Nilai Max IPM]`, dengan rata-rata nasional sebesar `[Nilai Mean IPM]`.
-* **[Tambahkan 1-2 kalimat interpretasi singkat untuk variabel lain seperti Kemiskinan atau Pengangguran berdasarkan angka dari Console RStudio]**
+
+-   **PDRB per Kapita:** Memiliki rata-rata (*mean*) sebesar **135.650.462** dan nilai tengah (*median*) sebesar **137.310.624**. Nilai rata-rata dan median yang cukup berdekatan ini memberikan indikasi awal bahwa secara umum distribusi data ekonomi cukup berimbang, meskipun nanti akan dievaluasi lebih lanjut keberadaan nilai ekstremnya.
+-   **Indeks Pembangunan Manusia (IPM):** Berada pada rentang nilai minimum **55,01** hingga maksimum **84,99**, dengan rata-rata capaian nasional sebesar **69,90**.
+-   **Kemiskinan:** Tingkat kemiskinan memiliki rata-rata sebesar **13,72%** dengan standar deviasi **6,89**. Nilai simpangan baku yang cukup besar ini mengonfirmasi adanya variasi ketimpangan kondisi sosial yang lumayan lebar antar-wilayah.
+
+```{r stat-deskriptif}
+# Memisahkan variabel numerik saja untuk kalkulasi statistik
+data_num <- data %>%
+  select(where(is.numeric))
+
+print("--- Ringkasan Statistika Deskriptif Awal ---")
+summary(data_num)
+
+# Kalkulasi parameter spesifik
+sapply(data_num, mean, na.rm = TRUE) 
+sapply(data_num, median, na.rm = TRUE)
+sapply(data_num, sd, na.rm = TRUE) 
+sapply(data_num, var, na.rm = TRUE) 
+sapply(data_num, quantile, na.rm = TRUE) 
+```
 
 ## 3.3 Analisis Missing Value
-Pemeriksaan ketidaklengkapan data dilakukan dengan fungsi `colSums(is.na(data))`. Berdasarkan hasil pengecekan awal, ditemukan adanya data kosong (*missing value*) berupa nilai `NA` yang tersebar di beberapa variabel numerik, antara lain variabel `pdrb_perkapita` sebanyak `[X]` data, `kemiskinan` sebanyak `[X]` data, `pengangguran` sebanyak `[X]` data, `ipm` sebanyak `[X]` data, `akses_internet` sebanyak `[X]` data, dan `jalan_baik` sebanyak `[X]` data. Total keseluruhan data yang bolong adalah `[Masukkan total sum is.na]` data.
 
-Sesuai dengan kesepakatan tim analis, metode penanganan yang dipilih adalah *Complete Case Analysis* (Listwise Deletion) melalui fungsi `na.omit()`. Prosedur ini mengeklusi atau menghapus seluruh baris observasi yang mengandung nilai `NA`. Setelah dilakukan pembersihan, jumlah baris data menyusut dari **2500 baris menjadi 2357 baris**. Validasi ulang menggunakan `colSums(is.na(data_bersih))` menunjukkan angka **0** di semua kolom, yang menandakan data telah sepenuhnya bersih dari nilai kosong dan siap digunakan untuk analisis lanjutan.
+Pemeriksaan ketidaklengkapan data secara menyeluruh dilakukan menggunakan fungsi `colSums(is.na(data))` untuk melihat jumlah data kosong per kolom. Ditemukan adanya data kosong (*missing value*) berupa nilai `NA` yang tersebar secara acak pada beberapa variabel indikator numerik, dengan total keseluruhan data kosong sebanyak **149 observasi**.
+
+Sesuai dengan kesepakatan tim, metode penanganan yang dipilih adalah *Complete Case Analysis* menggunakan fungsi `na.omit()`. Prosedur ini menghapus seluruh baris observasi yang mengandung setidaknya satu nilai `NA`. Setelah dilakukan pembersihan ke dalam variabel `data_bersih`, validasi ulang menunjukkan angka 0 di semua kolom, menandakan persentase kekosongan data telah turun menjadi 0%.
+
+```{r missing-value}
+print("--- Jumlah Missing Value per Kolom ---")
+colSums(is.na(data))
+
+print("--- Menampilkan total Missing value ---")
+sum(is.na(data))
+
+print("--- Persentase Missing Value (%) ---")
+colSums(is.na(data))/nrow(data)*100
+
+# PENANGANAN: Menggunakan Complete Case Analysis
+data_bersih <- na.omit(data)
+
+print("--- Validasi Missing Value Setelah Pembersihan ---")
+colSums(is.na(data_bersih))
+```
 
 ## 3.4 Analisis Outlier
-Deteksi nilai ekstrem atau pencilan (*outlier*) dihitung secara matematis menggunakan batas pagar metode *Interquartile Range* (IQR). Berdasarkan hasil fungsi `cek_outlier()`, variabel yang teridentifikasi memiliki pencilan yang sangat mengganggu distribusi data adalah `pdrb_perkapita` (sebanyak `[X]` outlier), `kemiskinan` (sebanyak `[X]` outlier), dan `pengangguran` (sebanyak `[X]` outlier). Keberadaan outlier ini dipertegas melalui tampilan grafik *Boxplot* bawaan R sebelum dilakukan penanganan.
 
-Untuk menjaga agar ukuran sampel tidak berkurang lebih banyak lagi, penanganan pencilan dilakukan menggunakan metode **Winsorizing**. Melalui metode ini, nilai data yang berada di bawah batas bawah ($Q1 - 1.5 \times IQR$) atau di atas batas atas ($Q3 + 1.5 \times IQR$) tidak dihapus, melainkan diubah (*clipping*) nilainya secara otomatis menjadi nilai ambang batas tersebut menggunakan fungsi `pmin()` dan `pmax()`. Setelah prosedur Winsorizing dieksekusi, pengujian ulang menggunakan fungsi `hitung_outlier()` menunjukkan jumlah outlier telah berkurang menjadi **0**, yang berarti data telah berhasil "dijinakkan" dari anomali ekstrem.
+Deteksi pencilan (*outlier*) dihitung menggunakan fungsi kustom `cek_outlier()` yang mengadopsi metode pagar batas *Interquartile Range* (IQR). Analisis ini difokuskan pada tiga variabel utama yang secara visual dikonfirmasi memiliki pencilan melalui grafik `boxplot()`, yaitu `pdrb_perkapita` (**5 outlier**), `kemiskinan` (**5 outlier**), dan `pengangguran` (**5 outlier**).
+
+```{r deteksi-outlier}
+# Ambil data numerik yang sudah bebas dari missing value
+data_num_bersih <- na.omit(data_num)
+
+# Fungsi formal deteksi jumlah outlier berdasarkan metode IQR
+cek_outlier <- function(x){
+  Q1 <- quantile(x, 0.25)
+  Q3 <- quantile(x, 0.75)
+  IQR <- Q3 - Q1
+  
+  lower <- Q1 - 1.5*IQR
+  upper <- Q3 + 1.5*IQR
+  
+  sum(x < lower | x > upper)
+}
+
+print("--- Jumlah Outlier per Variabel Sebelum Penanganan ---")
+sapply(data_num_bersih, cek_outlier)
+
+# TAMPILAN GRAFIK
+boxplot(data_num_bersih$pdrb_perkapita, main = "Boxplot PDRB Per Kapita")
+boxplot(data_num_bersih$kemiskinan, main = "Boxplot Kemiskinan")
+boxplot(data_num_bersih$pengangguran, main = "Boxplot Pengangguran")
+```
+
+Untuk mempertahankan ukuran sampel data yang sudah bersih, penanganan pencilan dilakukan dengan metode **Winsorizing**. Nilai data yang berada di luar ambang batas penentuan IQR diubah (*clipping*) secara paksa ke nilai ambang batas tersebut. Setelah dieksekusi, evaluasi ulang mengonfirmasi bahwa jumlah nilai ekstrem pada ketiga variabel telah direduksi menjadi 0, sehingga distribusi data menjadi lebih stabil untuk divisualisasikan tanpa ada baris data yang terbuang.
+
+```{r penanganan-outlier}
+# PENANGANAN OUTLIER: Metode Winsorizing
+
+# 1. PDRB Per Kapita
+Q1 <- quantile(data_bersih$pdrb_perkapita, 0.25)
+Q3 <- quantile(data_bersih$pdrb_perkapita, 0.75)
+IQR <- Q3 - Q1
+lower <- Q1 - 1.5 * IQR
+upper <- Q3 + 1.5 * IQR
+data_bersih$pdrb_perkapita <- pmin(pmax(data_bersih$pdrb_perkapita, lower), upper)
+
+# 2. Kemiskinan
+Q1 <- quantile(data_bersih$kemiskinan, 0.25)
+Q3 <- quantile(data_bersih$kemiskinan, 0.75)
+IQR <- Q3 - Q1
+lower <- Q1 - 1.5 * IQR
+upper <- Q3 + 1.5 * IQR
+data_bersih$kemiskinan <- pmin(pmax(data_bersih$kemiskinan, lower), upper)
+
+# 3. Pengangguran
+Q1 <- quantile(data_bersih$pengangguran, 0.25)
+Q3 <- quantile(data_bersih$pengangguran, 0.75)
+IQR <- Q3 - Q1
+lower <- Q1 - 1.5 * IQR
+upper <- Q3 + 1.5 * IQR
+data_bersih$pengangguran <- pmin(pmax(data_bersih$pengangguran, lower), upper)
+
+print("--- Jumlah Outlier Setelah Penanganan (Winsorizing) ---")
+hitung_outlier <- function(x){
+  Q1 <- quantile(x, 0.25)
+  Q3 <- quantile(x, 0.75)
+  IQR <- Q3 - Q1
+  
+  lower <- Q1 - 1.5 * IQR
+  upper <- Q3 + 1.5 * IQR
+  
+  sum(x < lower | x > upper)
+}
+
+hitung_outlier(data_bersih$pdrb_perkapita)
+hitung_outlier(data_bersih$kemiskinan)
+hitung_outlier(data_bersih$pengangguran)
+```
 
 ## 3.5 Visualisasi Data
-Visualisasi dibangun menggunakan library `ggplot2` untuk menampilkan pola, sebaran, dan tren data pembangunan wilayah dari tahun 2020 hingga 2024. Berikut adalah interpretasi dari grafik yang telah dihasilkan:
 
-1. **Grafik 1 (Bar Chart Pengangguran per Provinsi):** Menampilkan persentase pengangguran tahunan yang dikelompokkan berdasarkan provinsi. Grafik ini memperlihatkan disparitas tingkat pengangguran terbuka, di mana Provinsi `[Nama Provinsi Tertinggi]` secara konsisten menunjukkan angka pengangguran tertinggi dibanding wilayah lainnya.
-2. **Grafik 2 (Boxplot Distribusi Kemiskinan per Tahun):** Menunjukkan fluktuasi sebaran data kemiskinan secara nasional. Garis tengah (median) pada boxplot memperlihatkan tren `[menurun / stabil / meningkat]` dari tahun 2020 ke tahun 2024.
-3. **Grafik 3 (Line Chart Tren PDRB per Kapita):** Menggambarkan pergerakan pertumbuhan ekonomi daerah. Terlihat pertumbuhan ekonomi paling pesat dialami oleh daerah-daerah di Provinsi `[Nama Provinsi]`.
-4. **Grafik 4 (Lollipop Chart IPM per Provinsi):** Menampilkan peringkat capaian rata-rata IPM. Provinsi `[Nama Provinsi]` menduduki peringkat teratas, sementara Provinsi `[Nama Provinsi]` berada di posisi terbawah.
-5. **Grafik 5 (Heatmap Harapan Hidup):** Gradasi warna dari muda ke tua menunjukkan perkembangan usia harapan hidup masyarakat yang cenderung `[membaik/meningkat]` di hampir seluruh provinsi seiring bertambahnya tahun pengamatan.
+Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan metode agregasi `group_by()` dan `summarise()` dari *library* `dplyr`. Data dihitung rata-ratanya berdasarkan pengelompokan `provinsi` dan `tahun`. Pembuatan grafik menggunakan *library* `ggplot2` menghasilkan visualisasi informatif terkait persentase pengangguran, tren tingkat kemiskinan, capaian pertumbuhan ekonomi (PDRB), peringkat IPM, dan angka harapan hidup.
+
+```{r visualisasi-data, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
+# Agregasi data
+filtered_mean_data <- data_bersih %>%
+  group_by(provinsi, tahun) %>%
+  summarise(
+    pdrb = mean(pdrb_perkapita),
+    kemiskinan = mean(kemiskinan),
+    pengangguran = mean(pengangguran),
+    ipm = mean(ipm),
+    harapan_hidup = mean(harapan_hidup),
+    lama_sekolah = mean(rata_lama_sekolah),
+    internet = mean(akses_internet),
+    jalan_baik = mean(jalan_baik),
+    air_bersih = mean(air_bersih),
+    .groups = "drop"
+  )
+
+# 1. Bar Chart Pengangguran
+ggplot(filtered_mean_data,
+       aes(x = provinsi,
+           y = pengangguran,
+           fill = factor(tahun))) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Persentase pengangguran per Provinsi setiap tahun",
+    x = "Provinsi",
+    y = "Total (%)",
+    fill = "Tahun"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("#FDE0DD", "#FCAE91", "#FB6A4A", "#DE2D26", "#A50F15")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# 2. Boxplot Kemiskinan
+ggplot(data_bersih,
+       aes(x = factor(tahun),
+           y = kemiskinan,
+           fill = factor(tahun))) +
+  geom_boxplot() +
+  labs(
+    title = "Distribusi Kemiskinan per Tahun",
+    x = "Tahun",
+    y = "Kemiskinan (%)"
+  ) +
+  theme_minimal() +
+  guides(fill = "none")
+
+# 3. Line Chart PDRB
+ggplot(filtered_mean_data,
+       aes(x = tahun,
+           y = pdrb,
+           color = provinsi,
+           group = provinsi)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Tren PDRB per Kapita",
+    x = "Tahun",
+    y = "PDRB Per Kapita"
+  ) +
+  theme_minimal()
+
+# 4. Lollipop Chart IPM
+ggplot(filtered_mean_data,
+       aes(x = reorder(provinsi, ipm),
+           y = ipm,
+           color = factor(tahun))) +
+  geom_segment(aes(xend = provinsi,
+                   y = 50,
+                   yend = ipm),
+               alpha = 0.5) +
+  geom_point(size = 4) +
+  coord_flip() +
+  scale_y_continuous(limits = c(50, 85)) +
+  scale_color_manual(values = c("#FDE0DD", "#FCAE91", "#FB6A4A", "#DE2D26", "#A50F15")) +
+  labs(
+    title = "IPM per Provinsi Berdasarkan Tahun",
+    x = "Provinsi",
+    y = "IPM",
+    color = "Tahun"
+  ) +
+  theme_minimal()
+
+# 5. Heatmap Harapan Hidup
+ggplot(filtered_mean_data,
+       aes(x = factor(tahun),
+           y = provinsi,
+           fill = harapan_hidup)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(
+    low = "#FDE0DD",
+    high = "#A50F15"
+  ) +
+  labs(
+    title = "Heatmap Harapan Hidup",
+    x = "Tahun",
+    y = "Provinsi",
+    fill = "Harapan Hidup"
+  ) +
+  theme_minimal()
+```
 
 ## 3.6 Analisis Probabilitas dan Distribusi Data
+
 Analisis ini berfokus pada pengujian sifat distribusi data pada variabel `air_bersih` dan perhitungan peluang bersyaratnya.
 
 ### 1. Uji Normalitas Formal
+
 Pengujian normalitas dilakukan secara formal menggunakan metode *Shapiro-Wilk Test*. Berdasarkan output RStudio, diperoleh nilai p-value sebesar `[Masukkan nilai p-value dari Console]`. Karena nilai p-value `[> / <]` 0.05, maka keputusan statistik yang diambil adalah `[Menerima / Menolak]` hipotesis nol ($H_0$). Hal ini menyimpulkan bahwa data akses air bersih di Indonesia `[Mendekati distribusi normal / Tidak berdistribusi normal]`.
 
 ### 2. Perhitungan Probabilitas Sederhana
-Menggunakan pendekatan fungsi kumulatif distribusi normal (`pnorm()`) dengan nilai rata-rata ($\mu$) sebesar `[Masukkan nilai mu]` dan standar deviasi ($\sigma$) sebesar `[Masukkan nilai sigma]`, dihitung peluang atau probabilitas suatu wilayah di Indonesia memiliki akses air bersih di atas 70%. 
 
-Berdasarkan kalkulasi sistem, diperoleh hasil:
-$$\text{Peluang akses air bersih } > 70\% = [Masukkan\ angka\ prob\_70\ dari\ Console]$$
-Hal ini bermakna bahwa jika diambil satu kabupaten/kota secara acak di Indonesia, kemungkinannya adalah sebesar `[Masukkan persentase, misal: 65.43%]` bagi wilayah tersebut untuk memiliki cakupan layanan air bersih yang layak di atas 70%.
+Menggunakan pendekatan fungsi kumulatif distribusi normal (`pnorm()`) dengan nilai rata-rata ($\mu$) sebesar `[Masukkan nilai mu]` dan standar deviasi ($\sigma$) sebesar `[Masukkan nilai sigma]`, dihitung peluang atau probabilitas suatu wilayah di Indonesia memiliki akses air bersih di atas 70%.
+
+Berdasarkan kalkulasi sistem, diperoleh hasil: $$\text{Peluang akses air bersih } > 70\% = [Masukkan\ angka\ prob\_70\ dari\ Console]$$ Hal ini bermakna bahwa jika diambil satu kabupaten/kota secara acak di Indonesia, kemungkinannya adalah sebesar `[Masukkan persentase, misal: 65.43%]` bagi wilayah tersebut untuk memiliki cakupan layanan air bersih yang layak di atas 70%.
 
 ## 3.7 Analisis Korelasi
+
 Untuk mengetahui sejauh mana dampak hubungan timbal balik antar-indikator makro, dilakukan uji signifikansi korelasi linear *Pearson* antara variabel **Indeks Pembangunan Manusia (IPM)** dengan **Tingkat Pengangguran**.
 
-Berdasarkan hasil eksekusi fungsi `cor.test()`, diperoleh data statistik sebagai berikut:
-* Nilai Koefisien Korelasi ($r$) : `[Masukkan nilai r dari Console]`
-* Nilai P-Value : `[Masukkan nilai P-Value dari Console]`
+Berdasarkan hasil eksekusi fungsi `cor.test()`, diperoleh data statistik sebagai berikut: \* Nilai Koefisien Korelasi ($r$) : `[Masukkan nilai r dari Console]` \* Nilai P-Value : `[Masukkan nilai P-Value dari Console]`
 
 ### Interpretasi Arah dan Kekuatan Hubungan:
-Melalui hasil di atas, pengujian membuktikan bahwa hubungan antara IPM dan tingkat pengangguran memiliki **Arah Hubungan `[Positif / Negatif]`**. Hal ini menunjukkan bahwa `[pilih: semakin tinggi IPM suatu wilayah, maka tingkat penganggurannya justru cenderung menurun / sebaliknya]`. 
+
+Melalui hasil di atas, pengujian membuktikan bahwa hubungan antara IPM dan tingkat pengangguran memiliki **Arah Hubungan `[Positif / Negatif]`**. Hal ini menunjukkan bahwa `[pilih: semakin tinggi IPM suatu wilayah, maka tingkat penganggurannya justru cenderung menurun / sebaliknya]`.
 
 Berdasarkan klasifikasi nilai absolut koefisien korelasi yang dihitung otomatis melalui program cabang `if-else`, kekuatan hubungan antara kedua variabel ini dikategorikan ke dalam hubungan yang **`[Sangat Lemah / Lemah / Sedang / Kuat / Sangat Kuat]`**. Nilai p-value yang `[< 0.05]` juga menandakan bahwa hubungan linear ini bersifat signifikan secara statistik pada tingkat kepercayaan 95%.
 
----
+------------------------------------------------------------------------
 
 \newpage
 
 # BAB IV KESIMPULAN
 
 ## 4.1 Kesimpulan Utama
+
 Berdasarkan seluruh rangkaian analisis statistik yang telah dilakukan terhadap dataset pembangunan wilayah di Indonesia, diperoleh beberapa kesimpulan utama sebagai berikut:
 
-1. **Kondisi dan Struktur Data:** Dataset awal memiliki kompleksitas tinggi dengan 2500 observasi dan 13 variabel. Tahap pembersihan data (*data cleaning*) menggunakan *Complete Case Analysis* (`na.omit()`) berhasil mengeliminasi seluruh data kosong (*missing value*), sehingga ukuran sampel akhir menjadi 2357 baris data yang valid.
+1.  **Kondisi dan Struktur Data:** Dataset awal memiliki kompleksitas tinggi dengan 2500 observasi dan 13 variabel. Tahap pembersihan data (*data cleaning*) menggunakan *Complete Case Analysis* (`na.omit()`) berhasil mengeliminasi seluruh data kosong (*missing value*), sehingga ukuran sampel akhir menjadi 2357 baris data yang valid.
 
-2. **Pengendalian Anomali Data:** Evaluasi menggunakan metode *Interquartile Range* (IQR) mendeteksi adanya pencilan (*outlier*) ekstrem pada variabel `pdrb_perkapita`, `kemiskinan`, dan `pengangguran`. Penerapan metode *Winsorizing* sukses mengatasi anomali tersebut dengan menyesuaikan nilai ekstrem ke batas ambang atas dan bawah IQR tanpa mengurangi jumlah baris data.
+2.  **Pengendalian Anomali Data:** Evaluasi menggunakan metode *Interquartile Range* (IQR) mendeteksi adanya pencilan (*outlier*) ekstrem pada variabel `pdrb_perkapita`, `kemiskinan`, dan `pengangguran`. Penerapan metode *Winsorizing* sukses mengatasi anomali tersebut dengan menyesuaikan nilai ekstrem ke batas ambang atas dan bawah IQR tanpa mengurangi jumlah baris data.
 
-3. **Karakteristik Distribusi dan Probabilitas:** Melalui uji formal *Shapiro-Wilk*, variabel `air_bersih` terbukti berdistribusi `[Mendekati normal / Tidak berdistribusi normal]` dengan p-value sebesar `[Angka p-value]`. Pendekatan fungsi kumulatif distribusi normal menghasilkan nilai peluang sebesar `[Angka prob_70, misal: 0.6543]` bagi sebuah kabupaten/kota di Indonesia untuk memiliki akses air bersih layak di atas 70%.
+3.  **Karakteristik Distribusi dan Probabilitas:** Melalui uji formal *Shapiro-Wilk*, variabel `air_bersih` terbukti berdistribusi `[Mendekati normal / Tidak berdistribusi normal]` dengan p-value sebesar `[Angka p-value]`. Pendekatan fungsi kumulatif distribusi normal menghasilkan nilai peluang sebesar `[Angka prob_70, misal: 0.6543]` bagi sebuah kabupaten/kota di Indonesia untuk memiliki akses air bersih layak di atas 70%.
 
-4. **Hubungan Antar-Variabel Makro:** Uji korelasi linear *Pearson* membuktikan adanya hubungan yang signifikan secara statistik antara Indeks Pembangunan Manusia (IPM) dengan Tingkat Pengangguran. Hubungan ini memiliki arah **`[Positif / Negatif]`** dengan tingkat kekuatan korelasi dalam kategori **`[Sangat Lemah / Lemah / Sedang / Kuat / Sangat Kuat]`**.
+4.  **Hubungan Antar-Variabel Makro:** Uji korelasi linear *Pearson* membuktikan adanya hubungan yang signifikan secara statistik antara Indeks Pembangunan Manusia (IPM) dengan Tingkat Pengangguran. Hubungan ini memiliki arah **`[Positif / Negatif]`** dengan tingkat kekuatan korelasi dalam kategori **`[Sangat Lemah / Lemah / Sedang / Kuat / Sangat Kuat]`**.
 
 ## 4.2 Insight Berbasis Data
-Analisis multivariat dan visualisasi tren dari tahun 2020 hingga 2024 memberikan beberapa *insight* penting mengenai potret pembangunan di Indonesia:
-* **Disparitas Wilayah yang Nyata:** Grafik *Lollipop* IPM dan *Line Chart* PDRB per kapita secara visual memperlihatkan adanya jurang pemisah yang cukup lebar antar-provinsi. Wilayah di Pulau `[Sebutkan pulau berdasarkan grafik tertinggi, misal: Jawa/Sumatera]` cenderung mendominasi capaian makroekonomi yang tinggi, sementara wilayah bagian `[Sebutkan wilayah terendah berdasarkan grafik]` masih memerlukan akselerasi pembangunan.
 
-* **Dampak Kualitas Manusia Terhadap Ketenagakerjaan:** Adanya korelasi signifikan antara IPM dan pengangguran memberikan pelajaran berharga bahwa peningkatan kualitas hidup (melalui dimensi kesehatan dan pendidikan yang terekam di IPM) memiliki dampak linear yang nyata terhadap `[pilih: penurunan angka pengangguran terbuka / penyerapan tenaga kerja yang lebih berkualitas]` di tingkat daerah.
+Analisis multivariat dan visualisasi tren dari tahun 2020 hingga 2024 memberikan beberapa *insight* penting mengenai potret pembangunan di Indonesia: \* **Disparitas Wilayah yang Nyata:** Grafik *Lollipop* IPM dan *Line Chart* PDRB per kapita secara visual memperlihatkan adanya jurang pemisah yang cukup lebar antar-provinsi. Wilayah di Pulau `[Sebutkan pulau berdasarkan grafik tertinggi, misal: Jawa/Sumatera]` cenderung mendominasi capaian makroekonomi yang tinggi, sementara wilayah bagian `[Sebutkan wilayah terendah berdasarkan grafik]` masih memerlukan akselerasi pembangunan.
 
-* **Pemerataan Infrastruktur Dasar:** Visualisasi *Heatmap* usia harapan hidup dan pemetaan akses air bersih menunjukkan pola yang terus membaik dari tahun ke tahun. Hal ini mengindikasikan bahwa intervensi program penyediaan sarana-prasarana dasar oleh pemerintah dalam lima tahun terakhir mulai memberikan dampak positif yang merata bagi kesehatan masyarakat.
+-   **Dampak Kualitas Manusia Terhadap Ketenagakerjaan:** Adanya korelasi signifikan antara IPM dan pengangguran memberikan pelajaran berharga bahwa peningkatan kualitas hidup (melalui dimensi kesehatan dan pendidikan yang terekam di IPM) memiliki dampak linear yang nyata terhadap `[pilih: penurunan angka pengangguran terbuka / penyerapan tenaga kerja yang lebih berkualitas]` di tingkat daerah.
+
+-   **Pemerataan Infrastruktur Dasar:** Visualisasi *Heatmap* usia harapan hidup dan pemetaan akses air bersih menunjukkan pola yang terus membaik dari tahun ke tahun. Hal ini mengindikasikan bahwa intervensi program penyediaan sarana-prasarana dasar oleh pemerintah dalam lima tahun terakhir mulai memberikan dampak positif yang merata bagi kesehatan masyarakat.
 
 ## 4.3 Saran dan Rekomendasi
+
 Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah rekomendasi kebijakan yang dapat disarankan:
 
-1. **Formulasi Kebijakan Berbasis Klaster Wilayah:** Pemerintah pusat disarankan tidak menyamaratakan target pembangunan makro antar-daerah. Alokasi anggaran fiskal dan insentif khusus harus diprioritaskan secara asimetris kepada provinsi-provinsi yang berada di peringkat bawah (berdasarkan indikator *Lollipop Chart* IPM dan *Heatmap* infrastruktur).
+1.  **Formulasi Kebijakan Berbasis Klaster Wilayah:** Pemerintah pusat disarankan tidak menyamaratakan target pembangunan makro antar-daerah. Alokasi anggaran fiskal dan insentif khusus harus diprioritaskan secara asimetris kepada provinsi-provinsi yang berada di peringkat bawah (berdasarkan indikator *Lollipop Chart* IPM dan *Heatmap* infrastruktur).
 
-2. **Penguatan Interkoneksi Program Pendidikan dan Ketenagakerjaan:** Mengingat kuatnya pengaruh dimensi IPM terhadap pengangguran, pemerintah daerah harus menyinkronkan kurikulum pendidikan vokasi/menengah dengan kebutuhan riil industri lokal guna mempercepat penyerapan tenaga kerja terdidik.
+2.  **Penguatan Interkoneksi Program Pendidikan dan Ketenagakerjaan:** Mengingat kuatnya pengaruh dimensi IPM terhadap pengangguran, pemerintah daerah harus menyinkronkan kurikulum pendidikan vokasi/menengah dengan kebutuhan riil industri lokal guna mempercepat penyerapan tenaga kerja terdidik.
 
-3. **Peningkatan Standar Pengumpulan Data Sosial:** Bagi instansi penyelenggara basis data sektoral daerah, penemuan *missing value* dan pencilan ekstrem yang cukup banyak di awal analisis menjadi sinyal penting perlunya standardisasi sistem *inputting data* agar tingkat validitas data makro di masa mendatang menjadi lebih akurat dan minim *noise*.
+3.  **Peningkatan Standar Pengumpulan Data Sosial:** Bagi instansi penyelenggara basis data sektoral daerah, penemuan *missing value* dan pencilan ekstrem yang cukup banyak di awal analisis menjadi sinyal penting perlunya standardisasi sistem *inputting data* agar tingkat validitas data makro di masa mendatang menjadi lebih akurat dan minim *noise*.
 
----
+------------------------------------------------------------------------
 
 \newpage
 
 # LAMPIRAN & DAFTAR PUSTAKA
 
 ## Daftar Pustaka
-1. Agung, I. G. N. (2014). Statistika Penerapan Model Rerata Sel Multi-Faktor. Jakarta: PT RajaGrafindo Persada[cite: 2].
-2. Badan Pusat Statistik. (2025). Indeks Pembangunan Manusia dan Ketimpangan Wilayah di Indonesia. Jakarta: BPS RI[cite: 2].
-3. Wickham, H., & Grolemund, G. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. Sebastopol: O'Reilly Media[cite: 2].
-4. Walpole, R. E., Myers, R. H., & Myers, S. L. (2016). Probability & Statistics for Engineers & Scientists (9th ed.). Boston: Pearson[cite: 2].
-5. Widodo, B. (2026). Panduan Proyek Akhir Probabilitas dan Statistika Berbasis R. Bogor: Sekolah Vokasi IPB University[cite: 1, 2].
 
+1.  Agung, I. G. N. (2014). Statistika Penerapan Model Rerata Sel Multi-Faktor. Jakarta: PT RajaGrafindo Persada[cite: 2].
+2.  Badan Pusat Statistik. (2025). Indeks Pembangunan Manusia dan Ketimpangan Wilayah di Indonesia. Jakarta: BPS RI[cite: 2].
+3.  Wickham, H., & Grolemund, G. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. Sebastopol: O'Reilly Media[cite: 2].
+4.  Walpole, R. E., Myers, R. H., & Myers, S. L. (2016). Probability & Statistics for Engineers & Scientists (9th ed.). Boston: Pearson[cite: 2].
+5.  Widodo, B. (2026). Panduan Proyek Akhir Probabilitas dan Statistika Berbasis R. Bogor: Sekolah Vokasi IPB University[cite: 1, 2].
