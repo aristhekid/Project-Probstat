@@ -1,0 +1,110 @@
+---
+title: "Laporan Akhir Proyek Probabilitas dan Statistika"
+subtitle: "Analisis Data Pembangunan Wilayah Menggunakan R"
+author: |
+  | **Mata Kuliah:** Probabilitas dan Statistika
+  | **Program Studi:** Teknologi Rekayasa Perangkat Lunak
+  | **Tahun Akademik:** 2025/2026
+  | 
+  | **Disusun Oleh:**
+  | 1. Lumaris Satya Dwinanto (J0403251143)
+  | 2. Mohammad Azmi Zaeni (NIM)
+  | 3. Muhammad Yusuf Baihaqi Bawono (NIM)
+  | 4. Muhammad Hilmi Musyaffa (NIM)
+  | 5. Muhammad Rafly (NIM)
+  | 6. Ilyas Najwan Pratama (NIM)
+date: "31 Mei 2026"
+output: pdf_document
+---
+
+\newpage
+
+# BAB I PENDAHULUAN
+
+## 1.1 Latar Belakang
+Pembangunan wilayah merupakan proses krusial dalam meningkatkan kualitas hidup masyarakat melalui pemerataan aspek ekonomi, sosial, pendidikan, kesehatan, dan infrastruktur. Keberhasilan pembangunan ini diukur melalui berbagai indikator makro, seperti Produk Domestik Regional Bruto (PDRB) per kapita, Indeks Pembangunan Manusia (IPM), tingkat kemiskinan, tingkat pengangguran terbuka, serta aksesibilitas terhadap fasilitas dasar. Berdasarkan data Badan Pusat Statistik, pada tahun 2024 IPM Indonesia telah mencapai angka 75,02, dengan tingkat kemiskinan sebesar 9,03%, dan tingkat pengangguran terbuka berada di angka 4,91%. 
+
+Meskipun menunjukkan tren perkembangan, angka makro tersebut menyembunyikan realitas adanya ketimpangan yang lebar antar-kabupaten atau kota di lapangan. Di dalam dunia analisis data, pengolahan data sosial sering kali dihadapkan pada tantangan teknis berupa ketidaklengkapan data (*missing value*) dan adanya anomali nilai ekstrem (*outlier*). Oleh karena itu, eksplorasi berbasis data pada proyek akhir ini memanfaatkan bahasa pemrograman R dan ekosistem RStudio untuk melakukan pembersihan data secara objektif, pengujian distribusi, hingga penarikan kesimpulan statistik yang valid dan dapat direproduksi secara utuh (*reproducible*).
+
+## 1.2 Tujuan Analisis
+Melalui proyek akhir ini, analisis diarahkan untuk memenuhi beberapa target kompetensi dan menjawab rumusan masalah sebagai berikut:
+
+1. Memahami karakteristik struktural, tipe data, dan dimensi dari dataset pembangunan wilayah.
+2. Melakukan eksplorasi statistika deskriptif untuk mengukur nilai pemusatan dan penyebaran data pada setiap variabel numerik.
+3. Mengidentifikasi jumlah dan sebaran data yang hilang (*missing value*) serta menentukan metode penanganan yang tepat.
+4. Mendeteksi keberadaan nilai ekstrem (*outlier*) menggunakan metode statistik yang robust.
+5. Membuat minimal 5 visualisasi data yang informatif (histogram, boxplot, dan scatter plot) untuk mempermudah pembacaan tren.
+6. Menerapkan konsep probabilitas serta menguji normalitas sebaran distribusi data.
+7. Menganalisis keeratan hubungan dan arah korelasi antar-indikator pembangunan wilayah.
+8. Menghasilkan *insight* serta rekomendasi kebijakan yang logis dan objektif berbasis data.
+
+---
+
+\newpage
+
+# BAB II METODOLOGI
+
+## 2.1 Deskripsi Dataset
+Dataset utama yang dianalisis dalam proyek ini berjudul `pembangunan_wilayah_missing_outlier.csv`. Dataset ini berisi 2500 observasi dan 13 variabel yang secara sengaja dirancang mengandung *noise* berupa *missing value* dan nilai ekstrem (*outlier*) untuk mencerminkan kondisi riil di lapangan. Cakupan variabel yang dianalisis meliputi: 
+
+* **wilayah & provinsi:** Identitas administratif unit observasi kabupaten/kota di Indonesia.
+* **tahun:** Periode waktu pengambilan data indikator pembangunan.
+* **pdrb_perkapita:** Refleksi produktivitas ekonomi daerah.
+* **kemiskinan & pengangguran:** Indikator ketimpangan sosial dan ketenagakerjaan.
+* **ipm, harapan_hidup, & rata_lama_sekolah:** Representasi dimensi kualitas hidup, kesehatan, dan pendidikan masyarakat.
+* **akses_internet, jalan_baik, & air_bersih:** Ketersediaan infrastruktur pendukung wilayah.
+
+## 2.2 Tools yang Digunakan
+Seluruh proses komputasi, pembersihan, visualisasi, dan pelaporan diintegrasikan menggunakan ekosistem **RStudio**. Library utama yang digunakan meliputi paket `tidyverse` (khususnya `dplyr` untuk manipulasi data dan `ggplot2` untuk visualisasi grafik), serta package `knitr` untuk menyusun dokumen Markdown agar seluruh alur kerja bersifat dapat direproduksi secara utuh (*reproducible*).
+
+## 2.3 Metode Analisis
+Tahapan pengolahan data statistik yang diterapkan dalam proyek ini mencakup:
+
+1. **Statistika Deskriptif:** Pengukuran tendensi sentral (Mean, Median) dan dispersi (Standar Deviasi, Varians, Kuartil) pada variabel numerik.
+2. **Penanganan Missing Value:** Identifikasi menggunakan fungsi `is.na()`, dilanjutkan dengan metode *Median Imputation* karena nilai median bersifat *robust* (kebal) terhadap pengaruh nilai ekstrem atau pencilan.
+3. **Deteksi Outlier:** Menggunakan metode matematika *Interquartile Range* (IQR) dengan batas ambang batas bawah $Q1 - 1.5 \times IQR$ dan batas atas $Q3 + 1.5 \times IQR$ serta bantuan visualisasi grafik *Boxplot*.
+4. **Uji Distribusi & Probabilitas:** Uji Normalitas formal menggunakan metode *Shapiro-Wilk* serta perhitungan peluang bersyarat menggunakan fungsi kumulatif distribusi normal.
+5. **Analisis Korelasi:** Pengukuran koefisien korelasi linear *Pearson* menggunakan fungsi `cor.test()` untuk memetakan keeratan hubungan antar-indikator wilayah.
+
+
+
+
+---
+
+\newpage
+
+# BAB III HASIL DAN PEMBAHASAN
+
+*(Bagian ini akan diisi setelah proses eksekusi script kode R selesai dijalankan bersama tim kode)*[cite: 1].
+
+## 3.1 Memahami Struktur Dataset
+## 3.2 Analisis Statistika Deskriptif
+## 3.3 Analisis Missing Value
+## 3.4 Analisis Outlier
+## 3.5 Visualisasi Data
+## 3.6 Analisis Probabilitas dan Distribusi Data
+## 3.7 Analisis Korelasi
+
+---
+
+\newpage
+
+# BAB IV KESIMPULAN
+
+## 4.1 Kesimpulan Utama
+## 4.2 Insight Berbasis Data
+## 4.3 Saran dan Rekomendasi
+
+---
+
+\newpage
+
+# LAMPIRAN & DAFTAR PUSTAKA
+
+## Daftar Pustaka
+1. Agung, I. G. N. (2014). Statistika Penerapan Model Rerata Sel Multi-Faktor. Jakarta: PT RajaGrafindo Persada[cite: 2].
+2. Badan Pusat Statistik. (2025). Indeks Pembangunan Manusia dan Ketimpangan Wilayah di Indonesia. Jakarta: BPS RI[cite: 2].
+3. Wickham, H., & Grolemund, G. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. Sebastopol: O'Reilly Media[cite: 2].
+4. Walpole, R. E., Myers, R. H., & Myers, S. L. (2016). Probability & Statistics for Engineers & Scientists (9th ed.). Boston: Pearson[cite: 2].
+5. Widodo, B. (2026). Panduan Proyek Akhir Probabilitas dan Statistika Berbasis R. Bogor: Sekolah Vokasi IPB University[cite: 1, 2].
+
