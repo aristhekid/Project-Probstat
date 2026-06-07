@@ -63,9 +63,11 @@ colSums(is.na(data))/nrow(data)*100
 
 # Penanganan missing value dengan Menghapus data
 data_bersih <- na.omit(data)
+data_num <- na.omit(data_num)
 
 # Memastikan tidak ada missing value lagi
 colSums(is.na(data_bersih))
+colSums(is.na(data_num))
 
 #==========================================================
 # 1.3.4 Analisis Outlier 
@@ -87,10 +89,6 @@ sapply(data_num, cek_outlier)
 
 # Menjelaskan variabel yang memiliki outlier.
 
-# Membuat boxplot seluruh variabel numerik
-boxplot(data_num,
-        main = "Deteksi Outlier Variabel Numerik",
-        las = 2)
 
 # Membuat boxplot untuk PDRB per kapita untuk menganalisis lebih lanjut
 boxplot(data_bersih$pdrb_perkapita,
