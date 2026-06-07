@@ -8,11 +8,11 @@ author: |
   | 
   | **Disusun Oleh:**
   | 1. Lumaris Satya Dwinanto (J0403251143)
-  | 2. Mohammad Azmi Zaeni (NIM)
-  | 3. Muhammad Yusuf Baihaqi Bawono (NIM)
-  | 4. Muhammad Hilmi Musyaffa (NIM)
-  | 5. Muhammad Rafly (NIM)
-  | 6. Ilyas Najwan Pratama (NIM)
+  | 2. Mohammad Azmi Zaeni (J0403251120)
+  | 3. Muhammad Yusuf Baihaqi Bawono (J0403251096)
+  | 4. Muhammad Hilmi Musyaffa (J0403251132)
+  | 5. Muhammad Rafly (J0403251002)
+  | 6. Ilyas Najwan Pratama (J0403251081)
 date: "31 Mei 2026"
 output: pdf_document
 ---
