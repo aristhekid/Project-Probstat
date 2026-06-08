@@ -277,137 +277,34 @@ hitung_outlier(data_bersih$pengangguran)
 
 Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan metode agregasi `group_by()` dan `summarise()` dari *library* `dplyr`. Data dihitung rata-ratanya berdasarkan pengelompokan `provinsi` dan `tahun`. Pembuatan grafik menggunakan *library* `ggplot2` menghasilkan 5 visualisasi informatif yang telah dilengkapi dengan judul dan label sumbu yang jelas.
 
-```{r vis-agregasi-1, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
-# Agregasi data untuk kebutuhan visualisasi
-filtered_mean_data <- data_bersih %>%
-  group_by(provinsi, tahun) %>%
-  summarise(
-    pdrb = mean(pdrb_perkapita),
-    kemiskinan = mean(kemiskinan),
-    pengangguran = mean(pengangguran),
-    ipm = mean(ipm),
-    harapan_hidup = mean(harapan_hidup),
-    lama_sekolah = mean(rata_lama_sekolah),
-    internet = mean(akses_internet),
-    jalan_baik = mean(jalan_baik),
-    air_bersih = mean(air_bersih),
-    .groups = "drop"
-  )
+![Gambar 1 Histogram Pengangguran](../gambar/1_histogram_pengangguran.png)
 
-# 1. Bar Chart Pengangguran
-ggplot(filtered_mean_data,
-       aes(x = provinsi,
-           y = pengangguran,
-           fill = factor(tahun))) +
-  geom_col(position = "dodge") +
-  labs(
-    title = "Persentase pengangguran per Provinsi setiap tahun",
-    x = "Provinsi",
-    y = "Total (%)",
-    fill = "Tahun"
-  ) +
-  theme_minimal() +
-  scale_fill_manual(values = c("#FDE0DD", "#FCAE91", 
-                               "#FB6A4A", "#DE2D26", 
-                               "#A50F15")) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
+**Penjelasan Grafik 1 (Histogram Pengangguran)**
 
-**Penjelasan Grafik 1 (Bar Chart Pengangguran)**
+**Isi Grafik:** Grafik ini membandingkan tingkat pengangguran terbuka antar-provinsi. Sumbu X merepresentasikan nama provinsi, sumbu Y menunjukkan persentase pengangguran, dan gradasi warna batang menunjukkan urutan tahun pengamatan (2020-2024).\
+**Kesimpulan:** Terdapat disparitas penyerapan tenaga kerja yang mencolok antar-daerah. Provinsi Sulawesi selatan secara konsisten mencatatkan angka pengangguran tertinggi selama lima tahun, sementara provinsi Banten memiliki tingkat pengangguran paling rendah dan stabil.
 
-**Isi Grafik:** Grafik ini membandingkan tingkat pengangguran terbuka antar-provinsi. Sumbu X merepresentasikan nama provinsi, sumbu Y menunjukkan persentase pengangguran, dan gradasi warna batang menunjukkan urutan tahun pengamatan (2020-2024). **Kesimpulan:** Terdapat disparitas penyerapan tenaga kerja yang mencolok antar-daerah. Provinsi Sulawesi selatan secara konsisten mencatatkan angka pengangguran tertinggi selama lima tahun, sementara provinsi Banten memiliki tingkat pengangguran paling rendah dan stabil.
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Gambar 2 BoxPlot Distribusi Kemiskinan](../gambar/2_Boxplot_Distribusi%20Kemiskinan.png)                                                                                                                                                                                                                                                           |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Penjelasan Grafik 2 (Boxplot Kemiskinan)**\                                                                                                                                                                                                                                                                                                        |
+| **Isi Grafik:** Visualisasi ini memotret sebaran persentase penduduk miskin secara nasional dari tahun ke tahun. Kotak (*box*) menunjukkan rentang data mayoritas (Kuartil 1 hingga Kuartil 3), sedangkan garis tengah kotak mewakili nilai median kemiskinan pada tahun tersebut.\                                                                  |
+| **Kesimpulan:** Distribusi tingkat kemiskinan di Indonesia terlihat cenderung meningkat dari tahun 2020 hingga 2024, yang ditandai dengan pergerakan garis median. Tidak terlihat adanya titik-titik di luar batas *whisker*, membuktikan bahwa penanganan pencilan (*outlier*) menggunakan metode Winsorizing pada tahap sebelumnya telah berhasil. |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-------------------------------------------------------------------------
-
-```{r vis-2, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
-# 2. Boxplot Kemiskinan
-ggplot(data_bersih,
-       aes(x = factor(tahun),
-           y = kemiskinan,
-           fill = factor(tahun))) +
-  geom_boxplot() +
-  labs(
-    title = "Distribusi Kemiskinan per Tahun",
-    x = "Tahun",
-    y = "Kemiskinan (%)"
-  ) +
-  theme_minimal() +
-  guides(fill = "none")
-```
-
-**Penjelasan Grafik 2 (Boxplot Kemiskinan)** \* **Isi Grafik:** Visualisasi ini memotret sebaran persentase penduduk miskin secara nasional dari tahun ke tahun. Kotak (*box*) menunjukkan rentang data mayoritas (Kuartil 1 hingga Kuartil 3), sedangkan garis tengah kotak mewakili nilai median kemiskinan pada tahun tersebut. \* **Kesimpulan:** Distribusi tingkat kemiskinan di Indonesia terlihat cenderung meningkat dari tahun 2020 hingga 2024, yang ditandai dengan pergerakan garis median. Tidak terlihat adanya titik-titik di luar batas *whisker*, membuktikan bahwa penanganan pencilan (*outlier*) menggunakan metode Winsorizing pada tahap sebelumnya telah berhasil.
-
-------------------------------------------------------------------------
-
-```{r vis-3, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
-# 3. Line Chart PDRB
-ggplot(filtered_mean_data,
-       aes(x = tahun,
-           y = pdrb,
-           color = provinsi,
-           group = provinsi)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
-  labs(
-    title = "Tren PDRB per Kapita",
-    x = "Tahun",
-    y = "PDRB Per Kapita"
-  ) +
-  theme_minimal()
-```
+![Gambar 3 BoxPlot LineChart PDRB per Tahun](../gambar/3_LineChart_PDRB%20per%20Tahun.png)
 
 **Penjelasan Grafik 3 (Line Chart PDRB)** \* **Isi Grafik:** Grafik garis ini melacak lintasan pertumbuhan ekonomi (PDRB per kapita) setiap provinsi (sumbu Y) seiring berjalannya waktu dari tahun 2020 hingga 2024 (sumbu X). Masing-masing garis mewakili satu provinsi yang berbeda. \* **Kesimpulan:** Pertumbuhan ekonomi wilayah berjalan dengan kecepatan yang berbeda-beda. Terdapat satu atau beberapa provinsi seperti Jawa Tengah yang lintasan ekonominya memimpin jauh di atas kelompok provinsi lainnya, menunjukkan adanya ketimpangan pusat-pusat pertumbuhan ekonomi.
 
 ------------------------------------------------------------------------
 
-```{r vis-4, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
-# 4. Lollipop Chart IPM
-ggplot(filtered_mean_data,
-       aes(x = reorder(provinsi, ipm),
-           y = ipm,
-           color = factor(tahun))) +
-  geom_segment(aes(xend = provinsi,
-                   y = 50,
-                   yend = ipm),
-               alpha = 0.5) +
-  geom_point(size = 4) +
-  coord_flip() +
-  scale_y_continuous(limits = c(50, 85)) +
-  scale_color_manual(values = c("#FDE0DD", "#FCAE91", 
-                                "#FB6A4A", "#DE2D26", 
-                                "#A50F15")) +
-  labs(
-    title = "IPM per Provinsi Berdasarkan Tahun",
-    x = "Provinsi",
-    y = "IPM",
-    color = "Tahun"
-  ) +
-  theme_minimal()
-```
+![Gambar 4 Lolipop chart IPM per Provinsi Berdasarkan Tahun](../gambar/4_Lolipop%20chart_IPM%20per%20Provinsi%20Berdasarkan%20Tahun.png)
 
 **Penjelasan Grafik 4 (Lollipop Chart IPM)** \* **Isi Grafik:** Grafik ini merupakan modifikasi dari *bar chart* yang dirancang untuk mempermudah pembacaan peringkat. Sumbu X menunjukkan Indeks Pembangunan Manusia (IPM) dan sumbu Y adalah nama provinsi. Batas bawah sumbu X diatur pada angka 50 agar perbedaan jarak nilai IPM antar-provinsi terlihat lebih kontras. \* **Kesimpulan:** Terlihat jelas *ranking* kualitas pembangunan manusia antardaerah. Provinsi Banten adalah wilayah dengan capaian kualitas hidup, pendidikan, dan kesehatan paling maju, sedangkan wilayah DKI Jakarta masih tertinggal dan membutuhkan atensi akselerasi pembangunan dasar.
 
 ------------------------------------------------------------------------
 
-```{r vis-5, fig.width=8, fig.height=6, message=FALSE, warning=FALSE}
-# 5. Heatmap Harapan Hidup
-ggplot(filtered_mean_data,
-       aes(x = factor(tahun),
-           y = provinsi,
-           fill = harapan_hidup)) +
-  geom_tile(color = "white") +
-  scale_fill_gradient(
-    low = "#FDE0DD",
-    high = "#A50F15"
-  ) +
-  labs(
-    title = "Heatmap Harapan Hidup",
-    x = "Tahun",
-    y = "Provinsi",
-    fill = "Harapan Hidup"
-  ) +
-  theme_minimal()
-```
+![Gambar 5 Heatmap Harapan Hidup Setiap Tahun](../gambar/5_Heatmap_Harapan%20Hidup%20Setiap%20Tahun.png)
 
 **Penjelasan Grafik 5 (Heatmap Harapan Hidup)** \* **Isi Grafik:** Visualisasi matriks ini memetakan angka harapan hidup berdasarkan pertemuan antara tahun (sumbu X) dan provinsi (sumbu Y). Intensitas capaian direpresentasikan melalui gradasi warna; warna merah tua menunjukkan angka harapan hidup tinggi, sedangkan merah muda menunjukkan angka yang lebih rendah. \* **Kesimpulan:** Secara keseluruhan, indikator kesehatan masyarakat mengalami tren perbaikan. Hal ini disimpulkan dari perubahan dominasi warna pada grafik yang semakin bergeser ke arah warna merah gelap seiring bertambahnya tahun.
 
@@ -459,7 +356,7 @@ Berdasarkan seluruh rangkaian analisis statistik yang telah dilakukan terhadap d
 
 ## 4.2 Insight Berbasis Data
 
-Analisis multivariat dan visualisasi tren dari tahun 2020 hingga 2024 memberikan beberapa *insight* penting mengenai potret pembangunan di Indonesia: \
+Analisis multivariat dan visualisasi tren dari tahun 2020 hingga 2024 memberikan beberapa *insight* penting mengenai potret pembangunan di Indonesia:\
 \* **Disparitas Wilayah yang Nyata:** Grafik *Lollipop* IPM dan *Line Chart* PDRB per kapita secara visual memperlihatkan adanya jurang pemisah yang cukup lebar antar-provinsi. Wilayah di Pulau `Jawa (khususnya provinsi seperti Jawa Tengah dan Banten)` cenderung mendominasi capaian makroekonomi yang tinggi, sementara wilayah seperti `DKI Jakarta & Sumatera` pada observasi data ini masih memerlukan akselerasi pembangunan.
 
 -   **Dampak Kualitas Manusia Terhadap Ketenagakerjaan:** Adanya korelasi signifikan antara IPM dan pengangguran memberikan pelajaran berharga bahwa peningkatan kualitas hidup (melalui dimensi kesehatan dan pendidikan yang terekam di IPM) memiliki dampak linear yang nyata terhadap `penurunan angka pengangguran terbuka` di tingkat daerah.
@@ -492,4 +389,4 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 
 \newpage
 
-# LAMPIRAN 
+# LAMPIRAN
