@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.8)  8 JUN 2026 08:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.8)  8 JUN 2026 09:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -564,29 +564,29 @@ File: laporan_probstat_files/figure-latex/vis-5-1.pdf Graphic file (type pdf)
 Package pdftex.def Info: laporan_probstat_files/figure-latex/vis-5-1.pdf  used on input line 1108.
 (pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
 [20 <./laporan_probstat_files/figure-latex/vis-5-1.pdf>] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 1248--1256
-\T1/lmtt/m/n/10 [pilih: penurunan angka pengangguran terbuka / penyerapan tenaga kerja yang lebih
+Underfull \hbox (badness 10000) in paragraph at lines 1225--1235
+\T1/lmtt/m/n/10 Jawa (khususnya provinsi seperti Jawa Tengah dan Banten) \T1/lmr/m/n/10 cen-derung men-dom-i-nasi ca-pa-ian
  []
 
-[22] [23] [24] (./laporan_probstat.aux)
+[22] [23] [24] [25] (./laporan_probstat.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-05-26>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12306 strings out of 469157
- 194696 string characters out of 5458745
- 623208 words of memory out of 5000000
- 41041 multiletter control sequences out of 15000+600000
+ 12310 strings out of 469157
+ 194723 string characters out of 5458745
+ 623230 words of memory out of 5000000
+ 41043 multiletter control sequences out of 15000+600000
  688324 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  88i,7n,93p,630b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on laporan_probstat.pdf (24 pages, 1040855 bytes).
+Output written on laporan_probstat.pdf (25 pages, 1037735 bytes).
 PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 75 named destinations out of 1000 (max. 500000)
- 238 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 384 PDF objects out of 1000 (max. 8388607)
+ 310 compressed objects within 4 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 246 words of extra memory for PDF output out of 10000 (max. 10000000)
 
