@@ -19,12 +19,12 @@ header-includes:
 
 {\large
 \begin{tabular}{p{8cm}p{3cm}}
-1. Lumaris Satya Dwinanto & J0403251143 \\
-2. Mohammad Azmi Zaeni & J0403251120 \\
-3. Muhammad Yusuf Baihaqi Bawono & J0403251096 \\
-4. Muhammad Hilmi Musyaffa & J0403251132 \\
-5. Muhammad Rafly & J0403251002 \\
-6. Ilyas Najwan Pratama & J0403251081 \\
+Lumaris Satya Dwinanto & J0403251143 \\
+Mohammad Azmi Zaeni & J0403251120 \\
+Muhammad Yusuf Baihaqi Bawono & J0403251096 \\
+Muhammad Hilmi Musyaffa & J0403251132 \\
+Muhammad Rafly & J0403251002 \\
+Ilyas Najwan Pratama & J0403251081 \\
 \end{tabular}
 }
 
@@ -107,48 +107,35 @@ Tahapan pengolahan data statistik yang diterapkan dalam proyek ini mengacu pada 
 
 # BAB III HASIL DAN PEMBAHASAN
 
-## 3.1 Memahami Dataset
 
-Langkah awal dalam analisis ini adalah mengeksplorasi karakteristik struktural dari dataset utama menggunakan fungsi dasar di R. Berdasarkan output dari RStudio, dataset awal memiliki dimensi sebanyak **2500 baris (observasi)** dan **13 kolom (variabel)**.
 
-Secara operasional, dataset ini merekam berbagai indikator sosial dan infrastruktur dengan penjelasan variabel sebagai berikut:
-
--   **wilayah & provinsi:** (Karakter) Identitas administratif kabupaten/kota dan provinsi tempat observasi dilakukan.
--   **tahun:** (Integer) Tahun pengambilan data indikator pembangunan (2020-2024).
--   **pdrb_perkapita:** (Numerik) Produk Domestik Regional Bruto per kapita, mengukur rata-rata produktivitas ekonomi daerah.
--   **kemiskinan:** (Numerik) Persentase penduduk yang hidup di bawah garis kemiskinan.
--   **pengangguran:** (Numerik) Tingkat Pengangguran Terbuka (TPT) di wilayah tersebut.
--   **ipm:** (Numerik) Indeks Pembangunan Manusia, mengukur capaian kesehatan, pendidikan, dan standar hidup.
--   **harapan_hidup:** (Numerik) Angka harapan hidup saat lahir sebagai indikator derajat kesehatan esensial.
--   **rata_lama_sekolah:** (Numerik) Rata-rata jumlah tahun yang dihabiskan penduduk untuk menempuh pendidikan formal.
--   **akses_internet, jalan_baik, air_bersih:** (Numerik) Persentase rumah tangga atau area yang terjangkau oleh infrastruktur tersebut.
-
-Eksplorasi awal ini penting untuk memastikan bahwa R membaca format setiap kolom dengan benar sebelum dilakukan komputasi statistik lebih lanjut.
-
-```{r pemahaman-dataset, message=FALSE, warning=FALSE}
-# Load library yang dibutuhkan
-library(dplyr)
-library(ggplot2)
-library(knitr)
-
-# Membaca dataset
-data <- read.csv("../dataset/pembangunan_wilayah_missing_outlier.csv")
-
-# Eksplorasi struktur dan dimensi awal data
-print("--- Dimensi Dataset ---")
-dim(data)
-
-print("--- Struktur Variabel Dataset ---")
-# Menggunakan glimpse() sebagai pengganti str() agar output terlipat rapi
-glimpse(data)
-
-# Membatasi tampilan tabel hanya 5 kolom pertama agar tidak keluar margin kertas
-kable(head(data[, 1:5]), caption = "Lima Kolom Pertama dari Enam Baris Teratas Dataset")
-```
 
 ## 3.2 Analisis Statistika Deskriptif
 
 Analisis statistik deskriptif dilakukan untuk melihat ringkasan ukuran pemusatan dan penyebaran data awal. Untuk menghindari *error* pada tipe data karakter, pemisahan variabel numerik dilakukan terlebih dahulu memanfaatkan *library* `dplyr` melalui fungsi `select(where(is.numeric))`. Setelah itu, perhitungan rata-rata, median, standar deviasi, varians, dan kuartil dihitung menggunakan fungsi `sapply()` dengan menambahkan argumen `na.rm = TRUE` agar kalkulasi tidak terganggu oleh data kosong.
+
+\begin{center}
+\textbf{Tabel 2. Statistik Deskriptif dan Hasil Uji Normalitas}
+
+\vspace{0.2cm}
+
+\begin{tabular}{|l|r|r|c|}
+\hline
+\textbf{Variabel} & \textbf{Mean} & \textbf{SD} & \textbf{Normalitas} \\
+\hline
+PDRB Per Kapita & 135700000 & 89341270 & Tidak Normal \\
+Kemiskinan & 13.72 & 6.89 & Tidak Normal \\
+Pengangguran & 8.05 & 4.26 & Tidak Normal \\
+IPM & 69.90 & 8.54 & Normal \\
+Harapan Hidup & 69.13 & 5.17 & Normal \\
+Rata-rata Lama Sekolah & 9.58 & 2.63 & Normal \\
+Akses Internet & 58.79 & 22.82 & Normal \\
+Jalan Baik & 65.26 & 20.37 & Normal \\
+Air Bersih & 69.76 & 17.50 & Normal \\
+\hline
+\end{tabular}
+\end{center}
+
 
 Berdasarkan komputasi dari eksekusi fungsi dasar statistik, diperoleh beberapa temuan utama:
 
@@ -156,126 +143,99 @@ Berdasarkan komputasi dari eksekusi fungsi dasar statistik, diperoleh beberapa t
 -   **Indikasi Data Tidak Normal:** Terdapat petunjuk kuat adanya sebaran data yang tidak normal pada beberapa variabel. Sebagai contoh, rata-rata kemiskinan berada di angka **13,72%** namun memiliki simpangan baku (standar deviasi) yang cukup tinggi yaitu **6,89**. Selisih yang signifikan antara rata-rata dan median pada variabel makro juga memberikan sinyal adanya kemencengan distribusi (*skewness*) akibat keberadaan kelompok minoritas data pencilan (*outlier*), yang akan ditelusuri lebih lanjut pada tahapan analisis outlier.
 -   **Indeks Pembangunan Manusia (IPM):** Berada pada rentang nilai minimum **55,01** hingga maksimum **84,99**, dengan rata-rata capaian nasional sebesar **69,90**.
 
-```{r stat-deskriptif}
-# Memisahkan variabel numerik saja untuk kalkulasi statistik
-data_num <- data %>%
-  select(where(is.numeric))
-
-print("--- Ringkasan Statistika Deskriptif Awal ---")
-summary(data_num)
-
-# Kalkulasi parameter spesifik
-sapply(data_num, mean, na.rm = TRUE) 
-sapply(data_num, median, na.rm = TRUE)
-sapply(data_num, sd, na.rm = TRUE) 
-sapply(data_num, var, na.rm = TRUE) 
-sapply(data_num, quantile, na.rm = TRUE) 
-```
 
 ## 3.3 Analisis Missing Value
+
+\begin{center}
+\textbf{Tabel 3. Jumlah data missing value Tiap variabel}
+
+\vspace{0.2cm}
+
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Variabel} & \textbf{Jumlah Missing Value} \\
+\hline
+PDRB Per Kapita & 25 \\
+Kemiskinan & 24 \\
+Pengangguran & 25 \\
+IPM & 25 \\
+Harapan Hidup & 0 \\
+Rata-rata Lama Sekolah & 0 \\
+Akses Internet & 25 \\
+Jalan Baik & 25 \\
+Air Bersih & 0 \\
+\hline
+\end{tabular}
+\end{center}
+
 
 Pemeriksaan ketidaklengkapan data secara menyeluruh dilakukan menggunakan fungsi `colSums(is.na(data))` untuk melihat jumlah data kosong per kolom. Ditemukan adanya data kosong (*missing value*) berupa nilai `NA` yang tersebar secara acak pada beberapa variabel indikator numerik, dengan total keseluruhan data kosong sebanyak **149 observasi**.
 
 Sesuai dengan kesepakatan tim, metode penanganan yang dipilih adalah *Complete Case Analysis* menggunakan fungsi `na.omit()`. Prosedur ini menghapus seluruh baris observasi yang mengandung setidaknya satu nilai `NA`. Setelah dilakukan pembersihan ke dalam variabel `data_bersih`, validasi ulang menunjukkan angka 0 di semua kolom, menandakan persentase kekosongan data telah turun menjadi 0%.
 
-```{r missing-value}
-print("--- Jumlah Missing Value per Kolom ---")
-colSums(is.na(data))
-
-print("--- Menampilkan total Missing value ---")
-sum(is.na(data))
-
-print("--- Persentase Missing Value (%) ---")
-colSums(is.na(data))/nrow(data)*100
-
-# PENANGANAN: Menggunakan Complete Case Analysis
-data_bersih <- na.omit(data)
-
-print("--- Validasi Missing Value Setelah Pembersihan ---")
-colSums(is.na(data_bersih))
-```
 
 ## 3.4 Analisis Outlier
 
+
+\begin{figure}[htbp]
+\centering
+
+\begin{minipage}{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../gambar/boxplot_Kemiskinan.png}
+\caption*{(a) Kemiskinan}
+\end{minipage}
+\hfill
+
+\begin{minipage}{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../gambar/boxplot_Pengangguran.png}
+\caption*{(b) Pengangguran}
+\end{minipage}
+\hfill
+
+\begin{minipage}{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../gambar/boxplot_PDRB Per Kapita.png}
+\caption*{(c) IPM}
+\end{minipage}
+
+\caption{Boxplot Deteksi Outlier Variabel Utama}
+\end{figure}
+
+
 Deteksi pencilan (*outlier*) dihitung menggunakan fungsi kustom `cek_outlier()` yang mengadopsi metode pagar batas *Interquartile Range* (IQR). Analisis ini difokuskan pada tiga variabel utama yang secara visual dikonfirmasi memiliki pencilan melalui grafik `boxplot()`, yaitu `pdrb_perkapita` (**5 outlier**), `kemiskinan` (**5 outlier**), dan `pengangguran` (**5 outlier**).
 
-```{r deteksi-outlier}
-# Ambil data numerik yang sudah bebas dari missing value
-data_num_bersih <- na.omit(data_num)
+\begin{center}
+\textbf{Tabel 4. Jumlah data outlier Tiap variabel}
 
-# Fungsi formal deteksi jumlah outlier berdasarkan metode IQR
-cek_outlier <- function(x){
-  Q1 <- quantile(x, 0.25)
-  Q3 <- quantile(x, 0.75)
-  IQR <- Q3 - Q1
-  
-  lower <- Q1 - 1.5*IQR
-  upper <- Q3 + 1.5*IQR
-  
-  sum(x < lower | x > upper)
-}
+\vspace{0.2cm}
 
-print("--- Jumlah Outlier per Variabel Sebelum Penanganan ---")
-sapply(data_num_bersih, cek_outlier)
-
-# TAMPILAN GRAFIK
-boxplot(data_num_bersih$pdrb_perkapita, main = "Boxplot PDRB Per Kapita")
-boxplot(data_num_bersih$kemiskinan, main = "Boxplot Kemiskinan")
-boxplot(data_num_bersih$pengangguran, main = "Boxplot Pengangguran")
-```
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Variabel} & \textbf{Jumlah Outlier} \\
+\hline
+PDRB Per Kapita & 5 \\
+Kemiskinan & 5 \\
+Pengangguran & 5 \\
+IPM & 0 \\
+Harapan Hidup & 0 \\
+Rata-rata Lama Sekolah & 0 \\
+Akses Internet & 0 \\
+Jalan Baik & 0 \\
+Air Bersih & 0 \\
+\hline
+\end{tabular}
+\end{center}
 
 Untuk mempertahankan ukuran sampel data yang sudah bersih, penanganan pencilan dilakukan dengan metode **Winsorizing**. Nilai data yang berada di luar ambang batas penentuan IQR diubah (*clipping*) secara paksa ke nilai ambang batas tersebut. Setelah dieksekusi, evaluasi ulang mengonfirmasi bahwa jumlah nilai ekstrem pada ketiga variabel telah direduksi menjadi 0, sehingga distribusi data menjadi lebih stabil untuk divisualisasikan tanpa ada baris data yang terbuang.
 
-```{r penanganan-outlier}
-# PENANGANAN OUTLIER: Metode Winsorizing
-
-# 1. PDRB Per Kapita
-Q1 <- quantile(data_bersih$pdrb_perkapita, 0.25)
-Q3 <- quantile(data_bersih$pdrb_perkapita, 0.75)
-IQR <- Q3 - Q1
-lower <- Q1 - 1.5 * IQR
-upper <- Q3 + 1.5 * IQR
-data_bersih$pdrb_perkapita <- pmin(
-  pmax(data_bersih$pdrb_perkapita, lower), 
-  upper
-)
-
-# 2. Kemiskinan
-Q1 <- quantile(data_bersih$kemiskinan, 0.25)
-Q3 <- quantile(data_bersih$kemiskinan, 0.75)
-IQR <- Q3 - Q1
-lower <- Q1 - 1.5 * IQR
-upper <- Q3 + 1.5 * IQR
-data_bersih$kemiskinan <- pmin(pmax(data_bersih$kemiskinan, lower), upper)
-
-# 3. Pengangguran
-Q1 <- quantile(data_bersih$pengangguran, 0.25)
-Q3 <- quantile(data_bersih$pengangguran, 0.75)
-IQR <- Q3 - Q1
-lower <- Q1 - 1.5 * IQR
-upper <- Q3 + 1.5 * IQR
-data_bersih$pengangguran <- pmin(pmax(data_bersih$pengangguran, lower), upper)
-
-print("--- Jumlah Outlier Setelah Penanganan (Winsorizing) ---")
-hitung_outlier <- function(x){
-  Q1 <- quantile(x, 0.25)
-  Q3 <- quantile(x, 0.75)
-  IQR <- Q3 - Q1
-  
-  lower <- Q1 - 1.5 * IQR
-  upper <- Q3 + 1.5 * IQR
-  
-  sum(x < lower | x > upper)
-}
-
-hitung_outlier(data_bersih$pdrb_perkapita)
-hitung_outlier(data_bersih$kemiskinan)
-hitung_outlier(data_bersih$pengangguran)
-```
 
 ## 3.5 Visualisasi Data
 
 Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan metode agregasi `group_by()` dan `summarise()` dari *library* `dplyr`. Data dihitung rata-ratanya berdasarkan pengelompokan `provinsi` dan `tahun`. Pembuatan grafik menggunakan *library* `ggplot2` menghasilkan 5 visualisasi informatif yang telah dilengkapi dengan judul dan label sumbu yang jelas.
+
+\newpage
 
 ![Gambar 1 Histogram Pengangguran](../gambar/1_histogram_pengangguran.png)
 
@@ -291,22 +251,35 @@ Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan meto
 | **Isi Grafik:** Visualisasi ini memotret sebaran persentase penduduk miskin secara nasional dari tahun ke tahun. Kotak (*box*) menunjukkan rentang data mayoritas (Kuartil 1 hingga Kuartil 3), sedangkan garis tengah kotak mewakili nilai median kemiskinan pada tahun tersebut.\                                                                  |
 | **Kesimpulan:** Distribusi tingkat kemiskinan di Indonesia terlihat cenderung meningkat dari tahun 2020 hingga 2024, yang ditandai dengan pergerakan garis median. Tidak terlihat adanya titik-titik di luar batas *whisker*, membuktikan bahwa penanganan pencilan (*outlier*) menggunakan metode Winsorizing pada tahap sebelumnya telah berhasil. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+\newpage
 
 ![Gambar 3 BoxPlot LineChart PDRB per Tahun](../gambar/3_LineChart_PDRB%20per%20Tahun.png)
 
-**Penjelasan Grafik 3 (Line Chart PDRB)** \* **Isi Grafik:** Grafik garis ini melacak lintasan pertumbuhan ekonomi (PDRB per kapita) setiap provinsi (sumbu Y) seiring berjalannya waktu dari tahun 2020 hingga 2024 (sumbu X). Masing-masing garis mewakili satu provinsi yang berbeda. \* **Kesimpulan:** Pertumbuhan ekonomi wilayah berjalan dengan kecepatan yang berbeda-beda. Terdapat satu atau beberapa provinsi seperti Jawa Tengah yang lintasan ekonominya memimpin jauh di atas kelompok provinsi lainnya, menunjukkan adanya ketimpangan pusat-pusat pertumbuhan ekonomi.
+**Penjelasan Grafik 3 (Line Chart PDRB)** \* 
+
+**Isi Grafik:** Grafik garis ini melacak lintasan pertumbuhan ekonomi (PDRB per kapita) setiap provinsi (sumbu Y) seiring berjalannya waktu dari tahun 2020 hingga 2024 (sumbu X). Masing-masing garis mewakili satu provinsi yang berbeda. \*
+
+**Kesimpulan:** Pertumbuhan ekonomi wilayah berjalan dengan kecepatan yang berbeda-beda. Terdapat satu atau beberapa provinsi seperti Jawa Tengah yang lintasan ekonominya memimpin jauh di atas kelompok provinsi lainnya, menunjukkan adanya ketimpangan pusat-pusat pertumbuhan ekonomi.
 
 ------------------------------------------------------------------------
 
 ![Gambar 4 Lolipop chart IPM per Provinsi Berdasarkan Tahun](../gambar/4_Lolipop%20chart_IPM%20per%20Provinsi%20Berdasarkan%20Tahun.png)
 
-**Penjelasan Grafik 4 (Lollipop Chart IPM)** \* **Isi Grafik:** Grafik ini merupakan modifikasi dari *bar chart* yang dirancang untuk mempermudah pembacaan peringkat. Sumbu X menunjukkan Indeks Pembangunan Manusia (IPM) dan sumbu Y adalah nama provinsi. Batas bawah sumbu X diatur pada angka 50 agar perbedaan jarak nilai IPM antar-provinsi terlihat lebih kontras. \* **Kesimpulan:** Terlihat jelas *ranking* kualitas pembangunan manusia antardaerah. Provinsi Banten adalah wilayah dengan capaian kualitas hidup, pendidikan, dan kesehatan paling maju, sedangkan wilayah DKI Jakarta masih tertinggal dan membutuhkan atensi akselerasi pembangunan dasar.
+**Penjelasan Grafik 4 (Lollipop Chart IPM)** \* 
+
+**Isi Grafik:** Grafik ini merupakan modifikasi dari *bar chart* yang dirancang untuk mempermudah pembacaan peringkat. Sumbu X menunjukkan Indeks Pembangunan Manusia (IPM) dan sumbu Y adalah nama provinsi. Batas bawah sumbu X diatur pada angka 50 agar perbedaan jarak nilai IPM antar-provinsi terlihat lebih kontras. \* 
+
+**Kesimpulan:** Terlihat jelas *ranking* kualitas pembangunan manusia antardaerah. Provinsi Banten adalah wilayah dengan capaian kualitas hidup, pendidikan, dan kesehatan paling maju, sedangkan wilayah DKI Jakarta masih tertinggal dan membutuhkan atensi akselerasi pembangunan dasar.
 
 ------------------------------------------------------------------------
 
 ![Gambar 5 Heatmap Harapan Hidup Setiap Tahun](../gambar/5_Heatmap_Harapan%20Hidup%20Setiap%20Tahun.png)
 
-**Penjelasan Grafik 5 (Heatmap Harapan Hidup)** \* **Isi Grafik:** Visualisasi matriks ini memetakan angka harapan hidup berdasarkan pertemuan antara tahun (sumbu X) dan provinsi (sumbu Y). Intensitas capaian direpresentasikan melalui gradasi warna; warna merah tua menunjukkan angka harapan hidup tinggi, sedangkan merah muda menunjukkan angka yang lebih rendah. \* **Kesimpulan:** Secara keseluruhan, indikator kesehatan masyarakat mengalami tren perbaikan. Hal ini disimpulkan dari perubahan dominasi warna pada grafik yang semakin bergeser ke arah warna merah gelap seiring bertambahnya tahun.
+**Penjelasan Grafik 5 (Heatmap Harapan Hidup)** \* 
+
+**Isi Grafik:** Visualisasi matriks ini memetakan angka harapan hidup berdasarkan pertemuan antara tahun (sumbu X) dan provinsi (sumbu Y). Intensitas capaian direpresentasikan melalui gradasi warna; warna merah tua menunjukkan angka harapan hidup tinggi, sedangkan merah muda menunjukkan angka yang lebih rendah. \* 
+
+**Kesimpulan:** Secara keseluruhan, indikator kesehatan masyarakat mengalami tren perbaikan. Hal ini disimpulkan dari perubahan dominasi warna pada grafik yang semakin bergeser ke arah warna merah gelap seiring bertambahnya tahun.
 
 ## 3.6 Analisis Probabilitas dan Distribusi Data
 
@@ -390,3 +363,355 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 \newpage
 
 # LAMPIRAN
+
+```{r}
+
+# Load library yang dibutuhkan
+library(dplyr)
+library(ggplot2)
+
+
+#==========================================================
+# 1.3.1 Memahami Dataset
+#==========================================================
+
+# Membaca dataset
+data <- read.csv("../dataset/pembangunan_wilayah_missing_outlier.csv")
+
+# Eksplorasi struktur dan dimensi awal data
+print("--- 6 Baris Teratas Dataset ---")
+head(data)
+
+print("--- Ringkasan Dataset ---")
+summary(data)
+
+print("--- Dimensi Dataset ---")
+dim(data)
+
+print("--- Struktur Variabel Dataset ---")
+str(data)
+
+#==========================================================
+# 1.3.2 Statistika Deskriptif (Kondisi Data Awal)
+#==========================================================
+
+# Memisahkan variabel numerik saja untuk kalkulasi statistik
+data_num <- data %>%
+  select(where(is.numeric))
+
+print("--- Ringkasan Statistika Deskriptif Awal ---")
+summary(data_num)
+
+# Kalkulasi parameter spesifik (Wajib na.rm = TRUE karena data masih ada NA)
+sapply(data_num, mean, na.rm = TRUE) #Menghitung mean
+
+sapply(data_num, median, na.rm = TRUE) #Menghitung median
+
+sapply(data_num, sd, na.rm = TRUE) #Menghitung standar deviasi
+
+sapply(data_num, var, na.rm = TRUE) #Menghitung varian
+
+sapply(data_num, quantile, na.rm = TRUE) #Menghitung kuartil
+
+#==========================================================
+# 1.3.3 Analisis Missing Value
+#==========================================================
+
+print("--- Jumlah Missing Value per Kolom ---")
+colSums(is.na(data))
+
+
+print("--- Menampilkan total Missing value ---")
+sum(is.na(data))
+
+print("--- Persentase Missing Value (%) ---")
+colSums(is.na(data))/nrow(data)*100
+
+# PENANGANAN: Menggunakan Complete Case Analysis (na.omit) sesuai kodingan tim
+data_bersih <- na.omit(data)
+
+
+print("--- Validasi Missing Value Setelah Pembersihan ---")
+colSums(is.na(data_bersih))
+
+
+#==========================================================
+# 1.3.4 Analisis Outlier 
+#==========================================================
+
+# Ambil data numerik yang sudah bebas dari missing value
+data_num_bersih <- na.omit(data_num)
+
+# Fungsi formal deteksi jumlah outlier berdasarkan metode IQR
+cek_outlier <- function(x){
+  Q1 <- quantile(x, 0.25)
+  Q3 <- quantile(x, 0.75)
+  IQR <- Q3 - Q1
+  
+  lower <- Q1 - 1.5*IQR
+  upper <- Q3 + 1.5*IQR
+  
+  sum(x < lower | x > upper)
+}
+
+print("--- Jumlah Outlier per Variabel Sebelum Penanganan ---")
+sapply(data_num_bersih, cek_outlier)
+
+# Menjelaskan variabel yang memiliki outlier.
+
+# TAMPILAN GRAFIK: Boxplot gabungan untuk mendeteksi outlier awal
+boxplot(data_num_bersih$pdrb_perkapita,
+        main = "Boxplot PDRB Per Kapita")
+
+# Membuat boxplot untuk kemiskinan untuk menganalisis lebih lanjut
+boxplot(data_num_bersih$kemiskinan,
+        main = "Boxplot Kemiskinan")
+
+# Membuat boxplot untuk Pengangguran untuk menganalisis lebih lanjut
+boxplot(data_num_bersih $pengangguran,
+        main = "Boxplot Pengangguran")
+
+
+
+# PENANGANAN OUTLIER: Menggunakan Metode Winsorizing agar data tidak terbuang
+
+# 1. PDRB Per Kapita
+Q1 <- quantile(data_bersih$pdrb_perkapita, 0.25)
+Q3 <- quantile(data_bersih$pdrb_perkapita, 0.75)
+IQR <- Q3 - Q1
+
+lower <- Q1 - 1.5 * IQR
+upper <- Q3 + 1.5 * IQR
+
+data_bersih$pdrb_perkapita <-
+  pmin(pmax(data_bersih$pdrb_perkapita, lower), upper)
+
+# 2. Kemiskinan
+Q1 <- quantile(data_bersih$kemiskinan, 0.25)
+Q3 <- quantile(data_bersih$kemiskinan, 0.75)
+IQR <- Q3 - Q1
+
+lower <- Q1 - 1.5 * IQR
+upper <- Q3 + 1.5 * IQR
+
+data_bersih$kemiskinan <-
+  pmin(pmax(data_bersih$kemiskinan, lower), upper)
+
+# 3. Pengangguran
+Q1 <- quantile(data_bersih$pengangguran, 0.25)
+Q3 <- quantile(data_bersih$pengangguran, 0.75)
+IQR <- Q3 - Q1
+
+lower <- Q1 - 1.5 * IQR
+upper <- Q3 + 1.5 * IQR
+
+data_bersih$pengangguran <-
+  pmin(pmax(data_bersih$pengangguran, lower), upper)
+
+
+print("--- Jumlah Outlier Setelah Penanganan (Winsorizing) ---")
+hitung_outlier <- function(x){
+  Q1 <- quantile(x, 0.25)
+  Q3 <- quantile(x, 0.75)
+  IQR <- Q3 - Q1
+  
+  lower <- Q1 - 1.5 * IQR
+  upper <- Q3 + 1.5 * IQR
+  
+  sum(x < lower | x > upper)
+}
+
+hitung_outlier(data_bersih$pdrb_perkapita)
+hitung_outlier(data_bersih$kemiskinan)
+hitung_outlier(data_bersih$pengangguran)
+
+
+#==========================================================
+# 1.3.5 Visualisasi Data 
+#==========================================================
+
+# Agregasi data rata-rata per provinsi dan tahun untuk mempermudah visualisasi
+filtered_mean_data <- data_bersih %>%
+  group_by(provinsi, tahun) %>%
+  summarise(
+    pdrb = mean(pdrb_perkapita),
+    kemiskinan = mean(kemiskinan),
+    pengangguran = mean(pengangguran),
+    ipm = mean(ipm),
+    harapan_hidup = mean(harapan_hidup),
+    lama_sekolah = mean(rata_lama_sekolah),
+    internet = mean(akses_internet),
+    jalan_baik = mean(jalan_baik),
+    air_bersih = mean(air_bersih)
+  )
+
+# Visualisasi data 1: Histogram Persentase Pengangguran per Provinsi setiap tahun
+ggplot(filtered_mean_data,
+       aes(x = provinsi,
+           y = pengangguran,
+           fill = factor(tahun))) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Persentase pengangguran per Provinsi setiap tahun",
+    x = "Provinsi",
+    y = "Total",
+    fill = "Tahun"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c(
+    "#FDE0DD",  # sangat muda
+    "#FCAE91",
+    "#FB6A4A",
+    "#DE2D26",
+    "#A50F15"   # merah tua
+  ))
+
+# Visualisasi data 2: Boxplot Distribusi Kemiskinan per Tahun
+ggplot(data_bersih,
+       aes(x = factor(tahun),
+           y = kemiskinan,
+           fill = factor(tahun))) +
+  geom_boxplot() +
+  labs(
+    title = "Distribusi Kemiskinan per Tahun",
+    x = "Tahun",
+    y = "Kemiskinan (%)"
+  ) +
+  theme_minimal()
+
+# Visualisasi data 3: Line Chart PDRB per Tahun
+ggplot(filtered_mean_data,
+       aes(x = tahun,
+           y = pdrb,
+           color = provinsi,
+           group = provinsi)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Tren PDRB per Kapita",
+    x = "Tahun",
+    y = "PDRB Per Kapita"
+  ) +
+  theme_minimal()
+
+# Visualisasi data 4: Lolipop chart IPM per Provinsi berdasarkan tahun
+ggplot(filtered_mean_data,
+       aes(x = reorder(provinsi, ipm),
+           y = ipm,
+           color = factor(tahun))) +
+  geom_segment(aes(xend = provinsi,
+                   y = 60,
+                   yend = ipm),
+               alpha = 0.5) +
+  geom_point(size = 4) +
+  coord_flip() +
+  scale_y_continuous(limits = c(60, 80)) +
+  scale_color_manual(values = c(
+    "2020" = "#FDE0DD",
+    "2021" = "#FCAE91",
+    "2022" = "#FB6A4A",
+    "2023" = "#DE2D26",
+    "2024" = "#A50F15"
+  )) +
+  labs(
+    title = "IPM per Provinsi Berdasarkan Tahun",
+    x = "Provinsi",
+    y = "IPM",
+    color = "Tahun"
+  ) +
+  theme_minimal()
+
+# Visualisasi data 5: Heatmap Harapan Hidup
+ggplot(filtered_mean_data,
+       aes(x = factor(tahun),
+           y = provinsi,
+           fill = harapan_hidup)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(
+    low = "#FDE0DD",
+    high = "#A50F15"
+  ) +
+  labs(
+    title = "Heatmap Harapan Hidup",
+    x = "Tahun",
+    y = "Provinsi",
+    fill = "Harapan Hidup"
+  ) +
+  theme_minimal()
+
+
+
+#==========================================================
+# 1.3.6 Analisis Probabilitas dan Distribusi Data
+# Peluang daerah memiliki air bersih lebih dari 70%
+#==========================================================
+
+print("--- Uji Normalitas (Shapiro-Wilk) Variabel Air Bersih ---")
+uji_normalitas <- shapiro.test(data_bersih$air_bersih)
+uji_normalitas
+
+print("--- Menentukan apakah data normal ---")
+if(uji_normalitas$p.value > 0.05){
+  print("Data mendekati distribusi normal")
+} else {
+  print("Data tidak berdistribusi normal")
+}
+
+print("--- Analisis Probabilitas Sederhana ---")
+mu <- mean(data_bersih$air_bersih)
+sigma <- sd(data_bersih$air_bersih)
+
+prob_70 <- 1 - pnorm(
+  70,
+  mean = mu,
+  sd = sigma
+)
+
+print(paste(
+  "Peluang akses air bersih > 70% =",
+  round(prob_70, 4)
+))
+
+
+#==========================================================
+# 1.3.7 Analisis Korelasi
+# Kasus Hubungan IPM dan Pengangguran
+#==========================================================
+
+# Menghitung korelasi Pearson
+print("--- Menghitung korerlasi antar variabel ---")
+kor_ipm_pengangguran <- cor.test(
+  data_bersih$ipm,
+  data_bersih$pengangguran,
+  method = "pearson"
+)
+
+# Menampilkan hasil
+print(paste("Koefisien Korelasi (r) :", round(kor_ipm_pengangguran$estimate, 4)))
+print(paste("P-Value :", round(kor_ipm_pengangguran$p.value, 4)))
+
+# Menentukan arah hubungan
+print("--- Arah hubungan positif/negatif ---")
+if(kor_ipm_pengangguran$estimate > 0){
+  print("Arah hubungan: Positif")
+} else {
+  print("Arah hubungan: Negatif")
+}
+
+# Menentukan kekuatan hubungan
+print("--- Menentukan kekuatan hubungan IPM dan Pengangguran ---")
+r <- abs(kor_ipm_pengangguran$estimate)
+
+if(r < 0.20){
+  print("Kekuatan hubungan: Sangat Lemah")
+} else if(r < 0.40){
+  print("Kekuatan hubungan: Lemah")
+} else if(r < 0.60){
+  print("Kekuatan hubungan: Sedang")
+} else if(r < 0.80){
+  print("Kekuatan hubungan: Kuat")
+} else {
+  print("Kekuatan hubungan: Sangat Kuat")
+}
+```
+```
