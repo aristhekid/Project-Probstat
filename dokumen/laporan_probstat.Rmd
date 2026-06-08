@@ -1,48 +1,44 @@
 ---
-title: "Laporan Akhir Proyek Probabilitas dan Statistika"
-subtitle: Analisis Data Pembangunan Wilayah Menggunakan R
-date: "31 Mei 2026"
 output:
   pdf_document: default
 ---
 \begin{center}
 
-{\Large \textbf {ANALISIS DATA PEMBANGUNAN WILAYAH}}
+{\LARGE \textbf{ANALISIS DATA PEMBANGUNAN WILAYAH}}\\[0.3cm]
+{\LARGE \textbf{MENGGUNAKAN R}}
 
-{\Large \textbf {MENGGUNAKAN R}}
+\vspace{1.5cm}
 
-\vspace{1.5 cm}
+{\LARGE \textbf{Disusun Oleh}}
 
-\textbf{Disusun Oleh}
+\vspace{0.5cm}
 
-\begin{tabular} {p{8cm}p{3cm}}
-1. Lumaris Satya Dwinanto (J0403251143)\\
-2. Mohammad Azmi Zaeni (J0403251120)\\
-3. Muhammad Yusuf Baihaqi Bawono (J0403251096)\\
-4. Muhammad Hilmi Musyaffa (J0403251132)\\
-5. Muhammad Rafly (J0403251002)\\
-6. Ilyas Najwan Pratama (J0403251081)\\
+{\large
+\begin{tabular}{p{8cm}p{3cm}}
+1. Lumaris Satya Dwinanto & J0403251143 \\
+2. Mohammad Azmi Zaeni & J0403251120 \\
+3. Muhammad Yusuf Baihaqi Bawono & J0403251096 \\
+4. Muhammad Hilmi Musyaffa & J0403251132 \\
+5. Muhammad Rafly & J0403251002 \\
+6. Ilyas Najwan Pratama & J0403251081 \\
 \end{tabular}
+}
 
 \vspace{1.5cm}
 
-\includegraphics[width= 3.5cm]{gambar/LogoPolos.png}
+\includegraphics[width=4cm]{../gambar/Logo_Polos.png}
 
 \vspace{1.5cm}
 
-{\Large \textbf {MATA KULIAH PROBABILITAS DAN STATISTIKA}}
+{\large \textbf{MATA KULIAH PROBABILITAS \& STATISTIKA}}\\[0.2cm]
+{\large \textbf{PROGRAM STUDI REKAYASA PERANGKAT LUNAK}}\\[0.2cm]
+{\large \textbf{SEKOLAH VOKASI}}\\[0.2cm]
+{\large \textbf{INSTITUT PERTANIAN BOGOR}}\\[0.2cm]
 
-{\Large \textbf {PROGRAM STUDI REKAYASA PERANGKAT LUNAK}}
-
-{\Large \textbf {MATA KULIAH PROBABILITAS DAN STATISTIKA}}
-
-{\Large \textbf {SEKOLAH VOKASI}}
-
-{\Large \textbf {INSTITUT PERTANIAN BOGOR}}
-
-{\Large \textbf {2025/2026}}
+{\large \textbf{2025/2026}}
 
 \end{center}
+
 
 
 \newpage
