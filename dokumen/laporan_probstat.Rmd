@@ -3,7 +3,6 @@ title: "Laporan Akhir Proyek Probabilitas dan Statistika"
 subtitle: Analisis Data Pembangunan Wilayah Menggunakan R
 date: "31 Mei 2026"
 output:
-  word_document: default
   pdf_document: default
 ---
 \begin{center}
@@ -27,7 +26,7 @@ output:
 
 \vspace{1.5cm}
 
-\includegraphics[width= 3.5cm]{../gambar/Logo Polos.png}
+\includegraphics[width= 3.5cm]{gambar/LogoPolos.png}
 
 \vspace{1.5cm}
 
@@ -47,6 +46,7 @@ output:
 
 
 \newpage
+
 
 # BAB I PENDAHULUAN
 
