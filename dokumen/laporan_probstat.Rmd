@@ -354,8 +354,11 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 
 ## Daftar Pustaka
 
-1.  [BPS] Badan Pusat Statistik. 2024. Indeks Pembangunan Manusia 2024 [Internet]. Jakarta (ID): BPS; [diunduh 2026 Jun 8]. Tersedia pada: https://www.bps.go.id/id/pressrelease/2024/11/15/2296.
-2.  Shapiro SS, Wilk MB. 1965. An analysis of variance test for normality (complete samples). *Biometrika* [Internet]. 52(3):591-611; [diunduh 2026 Jun 8]. Tersedia pada: https://doi.org/10.1093/biom/52.3-4.591.
+1.  [BPS] Badan Pusat Statistik. 2024. Indeks Pembangunan Manusia 2024 [Internet]. Jakarta (ID): BPS; [diakses 2026 Jun 8]. https://www.bps.go.id/id/pressrelease/2024/11/15/2296.
+2.  [BPS] Badan Pusat Statistik. 2024. Profil Kemiskinan di Indonesia Maret 2024 [Internet]. Jakarta (ID): BPS; [diakses 2026 Jun 8]. https://kukarkab.bps.go.id/id/pressrelease/2025/01/07/1019/profil-kemiskinan-di-indonesia-maret-2024.html
+3.  Shapiro SS, Wilk MB. 1965. An analysis of variance test for normality (complete samples). *Biometrika* [Internet]. 52(3):591-611; [diakses 2026 Jun 8]. https://doi.org/10.2307/2333709.
+4.  Zhu H, You X, Liu S. 2019. Multiple ant colony optimization based on pearson correlation coefficient. *IEEE Access*. 7:61628-61638. https://ieeexplore.ieee.org/abstract/document/8709963
+5.  Zibedi F, Sartomo B, Notodiputro KA .2022. Implementation of Winsorizing and random oversampling on data containing outliers and unbalanced data with the random forest classification method. *Jurnal Naturan*. 22(2):108-116. https://www.researchgate.net/profile/Fahrezal-Zubedi/publication/361649540_Implementation_of_Winsorizing_and_random_oversampling_on_data_containing_outliers_and_unbalanced_data_with_the_random_forest_classification_method/links/62bded9fd53e0b7114bebc3a/Implementation-of-Winsorizing-and-random-oversampling-on-data-containing-outliers-and-unbalanced-data-with-the-random-forest-classification-method.pdf
   
 
 \newpage

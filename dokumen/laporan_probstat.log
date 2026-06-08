@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.8)  8 JUN 2026 11:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.8)  8 JUN 2026 13:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -578,62 +578,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 721--731
 \T1/lmtt/m/n/10 Jawa (khususnya provinsi seperti Jawa Tengah dan Banten) \T1/lmr/m/n/10 cen-derung men-dom-i-nasi ca-pa-ian
  []
 
-[12] [13] [14] [15] [16]
-Overfull \hbox (102.49332pt too wide) in paragraph at lines 988--988
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 807--812
+\T1/lmr/m/n/10 publication / 361649540 _ Implementation _ of _ Winsorizing _ and _ random _ oversampling _ on _ data _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 807--812
+\T1/lmr/m/n/10 containing _ outliers _ and _ unbalanced _ data _ with _ the _ random _ forest _ classi^^\cation _ method /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 807--812
+\T1/lmr/m/n/10 links / 62bded9fd53e0b7114bebc3a / Implementation -[] of -[] Winsorizing -[] and -[] random -[] oversampling -[] on -[]
+ []
+
+[14] [15] [16]
+Overfull \hbox (102.49332pt too wide) in paragraph at lines 1002--1002
 []\T1/lmtt/m/n/10 ##  $ wilayah          : chr  "Kabupaten/Kota_1" "Kabupaten/Kota_2" "Kabupaten/Kota_3" "Kabupaten/Kota_4" ...[] 
  []
 
 
-Overfull \hbox (13.24358pt too wide) in paragraph at lines 988--988
+Overfull \hbox (13.24358pt too wide) in paragraph at lines 1002--1002
 []\T1/lmtt/m/n/10 ##  $ provinsi         : chr  "Jawa Barat" "Jawa Timur" "Kalimantan Timur" "DKI Jakarta" ...[] 
  []
 
 [17] [18] [19] [20]
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf, id=178, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf, id=188, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 1286.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 1300.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf, id=179, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf, id=189, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf  used on input line 1296.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf  used on input line 1310.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [21 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf>]
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf, id=190, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf, id=200, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf  used on input line 1306.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf  used on input line 1320.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [22 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf>] [23 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf>] [24]
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf, id=215, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf, id=225, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf  used on input line 1452.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf  used on input line 1466.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [25]
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf, id=221, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf, id=231, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf  used on input line 1471.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf  used on input line 1485.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [26 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf>]
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf, id=231, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf, id=241, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf  used on input line 1492.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf  used on input line 1506.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [27 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf>]
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf, id=241, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf, id=251, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf  used on input line 1525.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf  used on input line 1539.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [28 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf>]
-<laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf, id=251, 469.755pt x 325.215pt>
+<laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf, id=261, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf  used on input line 1549.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf  used on input line 1563.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [29 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf>] [30 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf>] [31] [32] (./laporan_probstat.aux)
  ***********
@@ -642,18 +657,18 @@ L3 programming layer <2026-05-26>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12380 strings out of 469157
- 197958 string characters out of 5458745
- 625122 words of memory out of 5000000
+ 12383 strings out of 469157
+ 197979 string characters out of 5458745
+ 626122 words of memory out of 5000000
  41102 multiletter control sequences out of 15000+600000
  688324 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  88i,11n,93p,629b,636s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on laporan_probstat.pdf (32 pages, 1340588 bytes).
+Output written on laporan_probstat.pdf (32 pages, 1343382 bytes).
 PDF statistics:
- 434 PDF objects out of 1000 (max. 8388607)
- 338 compressed objects within 4 object streams
- 88 named destinations out of 1000 (max. 500000)
+ 445 PDF objects out of 1000 (max. 8388607)
+ 349 compressed objects within 4 object streams
+ 91 named destinations out of 1000 (max. 500000)
  278 words of extra memory for PDF output out of 10000 (max. 10000000)
 
