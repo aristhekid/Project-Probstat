@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.8)  8 JUN 2026 09:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.8)  8 JUN 2026 10:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -533,60 +533,76 @@ File: laporan_probstat_files/figure-latex/deteksi-outlier-3.pdf Graphic file (ty
 <use laporan_probstat_files/figure-latex/deteksi-outlier-3.pdf>
 Package pdftex.def Info: laporan_probstat_files/figure-latex/deteksi-outlier-3.pdf  used on input line 825.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[12 <./laporan_probstat_files/figure-latex/deteksi-outlier-2.pdf>] [13 <./laporan_probstat_files/figure-latex/deteksi-outlier-3.pdf>] [14]
-<laporan_probstat_files/figure-latex/vis-agregasi-1-1.pdf, id=126, 578.16pt x 433.62pt>
-File: laporan_probstat_files/figure-latex/vis-agregasi-1-1.pdf Graphic file (type pdf)
-<use laporan_probstat_files/figure-latex/vis-agregasi-1-1.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/vis-agregasi-1-1.pdf  used on input line 963.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-[15]
-<laporan_probstat_files/figure-latex/vis-2-1.pdf, id=131, 578.16pt x 433.62pt>
-File: laporan_probstat_files/figure-latex/vis-2-1.pdf Graphic file (type pdf)
-<use laporan_probstat_files/figure-latex/vis-2-1.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/vis-2-1.pdf  used on input line 996.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-[16 <./laporan_probstat_files/figure-latex/vis-agregasi-1-1.pdf>]
-<laporan_probstat_files/figure-latex/vis-3-1.pdf, id=141, 578.16pt x 433.62pt>
-File: laporan_probstat_files/figure-latex/vis-3-1.pdf Graphic file (type pdf)
-<use laporan_probstat_files/figure-latex/vis-3-1.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/vis-3-1.pdf  used on input line 1030.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-[17 <./laporan_probstat_files/figure-latex/vis-2-1.pdf>] [18 <./laporan_probstat_files/figure-latex/vis-3-1.pdf>]
-<laporan_probstat_files/figure-latex/vis-4-1.pdf, id=161, 578.16pt x 433.62pt>
-File: laporan_probstat_files/figure-latex/vis-4-1.pdf Graphic file (type pdf)
-<use laporan_probstat_files/figure-latex/vis-4-1.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/vis-4-1.pdf  used on input line 1071.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-[19 <./laporan_probstat_files/figure-latex/vis-4-1.pdf>]
-<laporan_probstat_files/figure-latex/vis-5-1.pdf, id=175, 578.16pt x 433.62pt>
-File: laporan_probstat_files/figure-latex/vis-5-1.pdf Graphic file (type pdf)
-<use laporan_probstat_files/figure-latex/vis-5-1.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/vis-5-1.pdf  used on input line 1108.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-[20 <./laporan_probstat_files/figure-latex/vis-5-1.pdf>] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 1225--1235
+[12 <./laporan_probstat_files/figure-latex/deteksi-outlier-2.pdf>] [13 <./laporan_probstat_files/figure-latex/deteksi-outlier-3.pdf>]
+<../gambar/1_histogram_pengangguran.png, id=121, 867.24pt x 289.08pt>
+File: ../gambar/1_histogram_pengangguran.png Graphic file (type png)
+<use ../gambar/1_histogram_pengangguran.png>
+Package pdftex.def Info: ../gambar/1_histogram_pengangguran.png  used on input line 927.
+(pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
+
+Overfull \hbox (1.3619pt too wide) in alignment at lines 943--945
+ [] 
+ []
+
+
+Overfull \hbox (1.3619pt too wide) in alignment at lines 945--947
+ [] 
+ []
+
+<../gambar/2_Boxplot_Distribusi Kemiskinan.png, id=122, 867.24pt x 289.08pt>
+File: ../gambar/2_Boxplot_Distribusi Kemiskinan.png Graphic file (type png)
+<use ../gambar/2_Boxplot_Distribusi Kemiskinan.png>
+Package pdftex.def Info: ../gambar/2_Boxplot_Distribusi Kemiskinan.png  used on input line 950.
+(pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
+
+Overfull \hbox (1.3619pt too wide) in alignment at lines 947--969
+ [] 
+ []
+
+[14]
+<../gambar/3_LineChart_PDRB per Tahun.png, id=128, 867.24pt x 289.08pt>
+File: ../gambar/3_LineChart_PDRB per Tahun.png Graphic file (type png)
+<use ../gambar/3_LineChart_PDRB per Tahun.png>
+Package pdftex.def Info: ../gambar/3_LineChart_PDRB per Tahun.png  used on input line 973.
+(pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
+<../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png, id=129, 867.24pt x 289.08pt>
+File: ../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png Graphic file (type png)
+<use ../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png>
+Package pdftex.def Info: ../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png  used on input line 991.
+(pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
+
+Overfull \vbox (181.59296pt too high) has occurred while \output is active []
+
+[15 <../gambar/1_histogram_pengangguran.png> <../gambar/2_Boxplot_Distribusi Kemiskinan.png> <../gambar/3_LineChart_PDRB per Tahun.png>]
+<../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png, id=140, 867.24pt x 289.08pt>
+File: ../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png Graphic file (type png)
+<use ../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png>
+Package pdftex.def Info: ../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png  used on input line 1010.
+(pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
+[16 <../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png> <../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png (PNG copy)>] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 1129--1139
 \T1/lmtt/m/n/10 Jawa (khususnya provinsi seperti Jawa Tengah dan Banten) \T1/lmr/m/n/10 cen-derung men-dom-i-nasi ca-pa-ian
  []
 
-[22] [23] [24] [25] (./laporan_probstat.aux)
+[18] [19] [20] [21] (./laporan_probstat.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-05-26>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12310 strings out of 469157
- 194723 string characters out of 5458745
- 623230 words of memory out of 5000000
- 41043 multiletter control sequences out of 15000+600000
+ 12317 strings out of 469157
+ 194697 string characters out of 5458745
+ 623249 words of memory out of 5000000
+ 41049 multiletter control sequences out of 15000+600000
  688324 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 88i,7n,93p,630b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,11n,93p,630b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/ARIS/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on laporan_probstat.pdf (25 pages, 1037735 bytes).
+Output written on laporan_probstat.pdf (21 pages, 1223623 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 310 compressed objects within 4 object streams
- 77 named destinations out of 1000 (max. 500000)
+ 347 PDF objects out of 1000 (max. 8388607)
+ 280 compressed objects within 3 object streams
+ 78 named destinations out of 1000 (max. 500000)
  246 words of extra memory for PDF output out of 10000 (max. 10000000)
 

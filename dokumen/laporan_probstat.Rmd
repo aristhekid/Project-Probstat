@@ -381,11 +381,11 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 
 ## Daftar Pustaka
 
-1.  Agung, I. G. N. (2014). Statistika Penerapan Model Rerata Sel Multi-Faktor. Jakarta: PT RajaGrafindo Persada[cite: 2].
-2.  Badan Pusat Statistik. (2025). Indeks Pembangunan Manusia dan Ketimpangan Wilayah di Indonesia. Jakarta: BPS RI[cite: 2].
-3.  Wickham, H., & Grolemund, G. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. Sebastopol: O'Reilly Media[cite: 2].
-4.  Walpole, R. E., Myers, R. H., & Myers, S. L. (2016). Probability & Statistics for Engineers & Scientists (9th ed.). Boston: Pearson[cite: 2].
-5.  Widodo, B. (2026). Panduan Proyek Akhir Probabilitas dan Statistika Berbasis R. Bogor: Sekolah Vokasi IPB University[cite: 1, 2].
+1.  [BPS] Badan Pusat Statistik. 2024. Indeks Pembangunan Manusia 2024 [Internet]. Jakarta (ID): BPS; [diunduh 2026 Jun 8]. Tersedia pada: https://www.bps.go.id/id/pressrelease/2024/11/15/2296.
+2.  
+3.  
+4. 
+5.  
 
 \newpage
 
