@@ -1,6 +1,9 @@
 ---
 output:
   pdf_document: default
+header-includes:
+  - \usepackage{sectsty}
+  - \sectionfont{\centering}
 ---
 \begin{center}
 
