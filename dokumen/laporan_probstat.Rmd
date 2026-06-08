@@ -5,6 +5,7 @@ header-includes:
   - \usepackage{sectsty}
   - \sectionfont{\centering}
 ---
+
 \begin{center}
 
 {\LARGE \textbf{ANALISIS DATA PEMBANGUNAN WILAYAH}}\\[0.3cm]
@@ -42,10 +43,7 @@ header-includes:
 
 \end{center}
 
-
-
 \newpage
-
 
 # BAB I PENDAHULUAN
 
@@ -419,25 +417,27 @@ Analisis ini berfokus pada pengujian sifat distribusi data pada variabel `air_be
 
 ### 1. Uji Normalitas Formal
 
-Pengujian normalitas dilakukan secara formal menggunakan metode *Shapiro-Wilk Test*. Berdasarkan output RStudio, diperoleh nilai p-value sebesar `[Masukkan nilai p-value dari Console]`. Karena nilai p-value `[> / <]` 0.05, maka keputusan statistik yang diambil adalah `[Menerima / Menolak]` hipotesis nol ($H_0$). Hal ini menyimpulkan bahwa data akses air bersih di Indonesia `[Mendekati distribusi normal / Tidak berdistribusi normal]`.
+Pengujian normalitas dilakukan secara formal menggunakan metode *Shapiro-Wilk Test*. Berdasarkan output RStudio, diperoleh nilai p-value \< 2.2e-16 Karena nilai p-value `<` 0.05, maka keputusan statistik yang diambil adalah `Menolak` hipotesis nol ($H_0$). Hal ini menyimpulkan bahwa data akses air bersih di Indonesia `Tidak berdistribusi normal`.
 
 ### 2. Perhitungan Probabilitas Sederhana
 
-Menggunakan pendekatan fungsi kumulatif distribusi normal (`pnorm()`) dengan nilai rata-rata ($\mu$) sebesar `[Masukkan nilai mu]` dan standar deviasi ($\sigma$) sebesar `[Masukkan nilai sigma]`, dihitung peluang atau probabilitas suatu wilayah di Indonesia memiliki akses air bersih di atas 70%.
+Menggunakan pendekatan fungsi kumulatif distribusi normal (`pnorm()`) dengan nilai rata-rata ($\mu$) sebesar 69.95518 dan standar deviasi ($\sigma$) sebesar `17.53362`, dihitung peluang atau probabilitas suatu wilayah di Indonesia memiliki akses air bersih di atas 70%.
 
-Berdasarkan kalkulasi sistem, diperoleh hasil: $$\text{Peluang akses air bersih } > 70\% = [Masukkan\ angka\ prob\_70\ dari\ Console]$$ Hal ini bermakna bahwa jika diambil satu kabupaten/kota secara acak di Indonesia, kemungkinannya adalah sebesar `[Masukkan persentase, misal: 65.43%]` bagi wilayah tersebut untuk memiliki cakupan layanan air bersih yang layak di atas 70%.
+Berdasarkan kalkulasi sistem, diperoleh hasil: $$\text{Peluang akses air bersih } > 70\% = 0.499$$Hal ini bermakna bahwa jika diambil satu kabupaten/kota secara acak di Indonesia, kemungkinannya adalah sebesar `49.9%` bagi wilayah tersebut untuk memiliki cakupan layanan air bersih yang layak di atas 70%.
 
 ## 3.7 Analisis Korelasi
 
 Untuk mengetahui sejauh mana dampak hubungan timbal balik antar-indikator makro, dilakukan uji signifikansi korelasi linear *Pearson* antara variabel **Indeks Pembangunan Manusia (IPM)** dengan **Tingkat Pengangguran**.
 
-Berdasarkan hasil eksekusi fungsi `cor.test()`, diperoleh data statistik sebagai berikut: \* Nilai Koefisien Korelasi ($r$) : `[Masukkan nilai r dari Console]` \* Nilai P-Value : `[Masukkan nilai P-Value dari Console]`
+Berdasarkan hasil eksekusi fungsi `cor.test()`, diperoleh data statistik sebagai berikut:\
+\* Nilai Koefisien Korelasi ($r$) : `0.004984047`\
+\* Nilai P-Value : `0.8089`
 
 ### Interpretasi Arah dan Kekuatan Hubungan:
 
-Melalui hasil di atas, pengujian membuktikan bahwa hubungan antara IPM dan tingkat pengangguran memiliki **Arah Hubungan `[Positif / Negatif]`**. Hal ini menunjukkan bahwa `[pilih: semakin tinggi IPM suatu wilayah, maka tingkat penganggurannya justru cenderung menurun / sebaliknya]`.
+Melalui hasil di atas, pengujian membuktikan bahwa hubungan antara IPM dan tingkat pengangguran memiliki **Arah Hubungan `Negatif`**. Hal ini menunjukkan bahwa `semakin tinggi IPM suatu wilayah, maka tingkat penganggurannya justru cenderung menurun`.
 
-Berdasarkan klasifikasi nilai absolut koefisien korelasi yang dihitung otomatis melalui program cabang `if-else`, kekuatan hubungan antara kedua variabel ini dikategorikan ke dalam hubungan yang **`[Sangat Lemah / Lemah / Sedang / Kuat / Sangat Kuat]`**. Nilai p-value yang `[< 0.05]` juga menandakan bahwa hubungan linear ini bersifat signifikan secara statistik pada tingkat kepercayaan 95%.
+Berdasarkan klasifikasi nilai absolut koefisien korelasi yang dihitung otomatis melalui program cabang `if-else`, kekuatan hubungan antara kedua variabel ini dikategorikan ke dalam hubungan yang **`Sangat Lemah`**. Nilai p-value yang `< 0.05` juga menandakan bahwa hubungan linear ini bersifat signifikan secara statistik pada tingkat kepercayaan 95%.
 
 ------------------------------------------------------------------------
 
