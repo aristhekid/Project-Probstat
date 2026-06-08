@@ -480,7 +480,7 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 
 \newpage
 
-# LAMPIRAN & DAFTAR PUSTAKA
+# DAFTAR PUSTAKA
 
 ## Daftar Pustaka
 
@@ -489,3 +489,7 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 3.  Wickham, H., & Grolemund, G. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. Sebastopol: O'Reilly Media[cite: 2].
 4.  Walpole, R. E., Myers, R. H., & Myers, S. L. (2016). Probability & Statistics for Engineers & Scientists (9th ed.). Boston: Pearson[cite: 2].
 5.  Widodo, B. (2026). Panduan Proyek Akhir Probabilitas dan Statistika Berbasis R. Bogor: Sekolah Vokasi IPB University[cite: 1, 2].
+
+\newpage
+
+# LAMPIRAN 
