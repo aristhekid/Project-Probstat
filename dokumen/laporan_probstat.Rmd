@@ -49,7 +49,7 @@ Ilyas Najwan Pratama & J0403251081 \\
 
 ## 1.1 Latar Belakang
 
-Pembangunan wilayah merupakan proses krusial dalam meningkatkan kualitas hidup masyarakat melalui pemerataan aspek ekonomi, sosial, pendidikan, kesehatan, dan infrastruktur. Keberhasilan pembangunan ini diukur melalui berbagai indikator makro, seperti Produk Domestik Regional Bruto (PDRB) per kapita, Indeks Pembangunan Manusia (IPM), tingkat kemiskinan, tingkat pengangguran terbuka, serta aksesibilitas terhadap fasilitas dasar. Berdasarkan data Badan Pusat Statistik, pada tahun 2024 IPM Indonesia telah mencapai angka 75,02, dengan tingkat kemiskinan sebesar 9,03%, dan tingkat pengangguran terbuka berada di angka 4,91%.
+Pembangunan wilayah merupakan proses krusial dalam meningkatkan kualitas hidup masyarakat melalui pemerataan aspek ekonomi, sosial, pendidikan, kesehatan, dan infrastruktur. Keberhasilan pembangunan ini diukur melalui berbagai indikator makro, seperti Produk Domestik Regional Bruto (PDRB) per kapita, Indeks Pembangunan Manusia (IPM), tingkat kemiskinan, tingkat pengangguran terbuka, serta aksesibilitas terhadap fasilitas dasar. Berdasarkan data Badan Pusat Statistik, pada tahun 2024 IPM Indonesia telah mencapai angka 75,02, dengan tingkat kemiskinan sebesar 9,03%, dan tingkat pengangguran terbuka berada di angka 4,91%.**([BPS] Badan Pusat Statistik 2024)**.
 
 Meskipun menunjukkan tren perkembangan, angka makro tersebut menyembunyikan realitas adanya ketimpangan yang lebar antar-kabupaten atau kota di lapangan. Di dalam dunia analisis data, pengolahan data sosial sering kali dihadapkan pada tantangan teknis berupa ketidaklengkapan data (*missing value*) dan adanya anomali nilai ekstrem (*outlier*). Oleh karena itu, eksplorasi berbasis data pada proyek akhir ini memanfaatkan bahasa pemrograman R dan ekosistem RStudio untuk melakukan pembersihan data secara objektif, pengujian distribusi, hingga penarikan kesimpulan statistik yang valid dan dapat direproduksi secara utuh (*reproducible*).
 
@@ -97,7 +97,7 @@ Tahapan pengolahan data statistik yang diterapkan dalam proyek ini mengacu pada 
 
 3.  **Deteksi dan Penanganan Outlier:** Menapis data anomali ekstrem secara matematis menggunakan metode *Interquartile Range* (IQR) lewat fungsi kustom dengan batas bawah $Q1 - 1.5 \times IQR$ dan batas atas $Q3 + 1.5 \times IQR$ (dibantu visualisasi grafik *Boxplot*). Penanganan pencilan dilakukan menggunakan metode **Winsorizing** lewat fungsi `pmin()` dan `pmax()` untuk menyesuaikan nilai ekstrem ke batas ambang IQR terdekat agar data tidak terbuang.
 
-4.  **Uji Distribusi & Probabilitas:** Menguji normalitas sebaran data secara formal pada variabel infrastruktur (`air_bersih`) menggunakan metode *Shapiro-Wilk Test* (`shapiro.test()`). Analisis dilanjutkan dengan menghitung nilai peluang bersyarat atau probabilitas menggunakan pendekatan fungsi kumulatif distribusi normal lewat fungsi `pnorm()`.
+4.  **Uji Distribusi & Probabilitas:** Menguji normalitas sebaran data secara formal pada variabel infrastruktur (`air_bersih`) menggunakan metode *Shapiro-Wilk Test* (`shapiro.test()`)**(Shapiro dan Wilk 1965)**. Analisis dilanjutkan dengan menghitung nilai peluang bersyarat atau probabilitas menggunakan pendekatan fungsi kumulatif distribusi normal lewat fungsi `pnorm()`.
 
 5.  **Analisis Korelasi:** Mengukur arah, signifikansi, dan kekuatan hubungan linear antar-variabel makro (kasus hubungan variabel `ipm` dan `pengangguran`) menggunakan Koefisien Korelasi *Pearson* via fungsi `cor.test()`. Analisis ini diperkuat dengan skema pengambilan keputusan otomatis menggunakan logika percabangan `if-else` di dalam program R.
 
@@ -287,7 +287,7 @@ Analisis ini berfokus pada pengujian sifat distribusi data pada variabel `air_be
 
 ### 1. Uji Normalitas Formal
 
-Pengujian normalitas dilakukan secara formal menggunakan metode *Shapiro-Wilk Test*. Berdasarkan output RStudio, diperoleh nilai p-value \< 2.2e-16 Karena nilai p-value `<` 0.05, maka keputusan statistik yang diambil adalah `Menolak` hipotesis nol ($H_0$). Hal ini menyimpulkan bahwa data akses air bersih di Indonesia `Tidak berdistribusi normal`.
+Pengujian normalitas dilakukan secara formal menggunakan metode *Shapiro-Wilk Test***(Shapiro dan Wilk 1965)**. Berdasarkan output RStudio, diperoleh nilai p-value \< 2.2e-16 Karena nilai p-value `<` 0.05, maka keputusan statistik yang diambil adalah `Menolak` hipotesis nol ($H_0$). Hal ini menyimpulkan bahwa data akses air bersih di Indonesia `Tidak berdistribusi normal`.
 
 ### 2. Perhitungan Probabilitas Sederhana
 
@@ -355,10 +355,8 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 ## Daftar Pustaka
 
 1.  [BPS] Badan Pusat Statistik. 2024. Indeks Pembangunan Manusia 2024 [Internet]. Jakarta (ID): BPS; [diunduh 2026 Jun 8]. Tersedia pada: https://www.bps.go.id/id/pressrelease/2024/11/15/2296.
-2.  
-3.  
-4. 
-5.  
+2.  Shapiro SS, Wilk MB. 1965. An analysis of variance test for normality (complete samples). *Biometrika* [Internet]. 52(3):591-611; [diunduh 2026 Jun 8]. Tersedia pada: https://doi.org/10.1093/biom/52.3-4.591.
+  
 
 \newpage
 
