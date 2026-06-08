@@ -121,17 +121,17 @@ Analisis statistik deskriptif dilakukan untuk melihat ringkasan ukuran pemusatan
 
 \begin{tabular}{|l|r|r|c|}
 \hline
-\textbf{Variabel} & \textbf{Mean} & \textbf{SD} & \textbf{Normalitas} \\
+\textbf{Variabel} & \textbf{Mean} & \textbf{SD} \\
 \hline
-PDRB Per Kapita & 135700000.00 & 89341270.00 & Tidak Normal \\
-Kemiskinan & 13.72 & 6.89 & Tidak Normal \\
-Pengangguran & 8.05 & 4.26 & Tidak Normal \\
-IPM & 69.90 & 8.54 & Normal \\
-Harapan Hidup & 69.13 & 5.17 & Normal \\
-Rata-rata Lama Sekolah & 9.58 & 2.63 & Normal \\
-Akses Internet & 58.79 & 22.82 & Normal \\
-Jalan Baik & 65.26 & 20.37 & Normal \\
-Air Bersih & 69.76 & 17.50 & Normal \\
+PDRB Per Kapita & 135700000.00 & 89341270.00\\
+Kemiskinan & 13.72 & 6.89 \\
+Pengangguran & 8.05 & 4.26 \\
+IPM & 69.90 & 8.54 \\
+Harapan Hidup & 69.13 & 5.17 \\
+Rata-rata Lama Sekolah & 9.58 & 2.63 \\
+Akses Internet & 58.79 & 22.82 \\
+Jalan Baik & 65.26 & 20.37 \\
+Air Bersih & 69.76 & 17.50 \\
 \hline
 \end{tabular}
 \end{center}
@@ -189,7 +189,7 @@ Jalan Baik & 6.525808e+01 & 6.523621e+01 \\
 \end{tabular}
 \end{center}
 
-Sesuai dengan kesepakatan tim, metode penanganan yang dipilih adalah *Complete Case Analysis* menggunakan fungsi `na.omit()`. Prosedur ini menghapus seluruh baris observasi yang mengandung setidaknya satu nilai `NA`. Setelah dilakukan pembersihan ke dalam variabel `data_bersih`, validasi ulang menunjukkan angka 0 di semua kolom, menandakan persentase kekosongan data telah turun menjadi 0%.
+Sesuai dengan kesepakatan tim, metode penanganan yang dipilih adalah *Listwise Deletion* menggunakan fungsi `na.omit()`. Prosedur ini menghapus seluruh baris observasi yang mengandung setidaknya satu nilai `NA`. Setelah dilakukan pembersihan ke dalam variabel `data_bersih`, validasi ulang menunjukkan angka 0 di semua kolom, menandakan persentase kekosongan data telah turun menjadi 0%.
 
 
 ## 3.3 Analisis Outlier

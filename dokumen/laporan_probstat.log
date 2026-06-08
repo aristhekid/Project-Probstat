@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.7)  8 JUN 2026 15:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.6.7)  8 JUN 2026 15:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -516,41 +516,41 @@ Overfull \hbox (10.35583pt too wide) in paragraph at lines 412--418
 <../gambar/boxplot_Kemiskinan.png, id=61, 867.24pt x 289.08pt>
 File: ../gambar/boxplot_Kemiskinan.png Graphic file (type png)
 <use ../gambar/boxplot_Kemiskinan.png>
-Package pdftex.def Info: ../gambar/boxplot_Kemiskinan.png  used on input line 453.
+Package pdftex.def Info: ../gambar/boxplot_Kemiskinan.png  used on input line 452.
 (pdftex.def)             Requested size: 150.32504pt x 50.10454pt.
 <../gambar/boxplot_Pengangguran.png, id=62, 867.24pt x 289.08pt>
 File: ../gambar/boxplot_Pengangguran.png Graphic file (type png)
 <use ../gambar/boxplot_Pengangguran.png>
-Package pdftex.def Info: ../gambar/boxplot_Pengangguran.png  used on input line 460.
+Package pdftex.def Info: ../gambar/boxplot_Pengangguran.png  used on input line 459.
 (pdftex.def)             Requested size: 150.32504pt x 50.10454pt.
 <../gambar/boxplot_PDRB Per Kapita.png, id=63, 867.24pt x 289.08pt>
 File: ../gambar/boxplot_PDRB Per Kapita.png Graphic file (type png)
 <use ../gambar/boxplot_PDRB Per Kapita.png>
-Package pdftex.def Info: ../gambar/boxplot_PDRB Per Kapita.png  used on input line 467.
+Package pdftex.def Info: ../gambar/boxplot_PDRB Per Kapita.png  used on input line 466.
 (pdftex.def)             Requested size: 150.32504pt x 50.10454pt.
 [6 <../gambar/Boxplot_Kemiskinan.png> <../gambar/Boxplot_Pengangguran.png> <../gambar/Boxplot_PDRB Per Kapita.png>] [7]
 <../gambar/1_histogram_pengangguran.png, id=82, 867.24pt x 289.08pt>
 File: ../gambar/1_histogram_pengangguran.png Graphic file (type png)
 <use ../gambar/1_histogram_pengangguran.png>
-Package pdftex.def Info: ../gambar/1_histogram_pengangguran.png  used on input line 526.
+Package pdftex.def Info: ../gambar/1_histogram_pengangguran.png  used on input line 525.
 (pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
 
-Overfull \hbox (1.3619pt too wide) in alignment at lines 542--544
+Overfull \hbox (1.3619pt too wide) in alignment at lines 541--543
  [] 
  []
 
 
-Overfull \hbox (1.3619pt too wide) in alignment at lines 544--546
+Overfull \hbox (1.3619pt too wide) in alignment at lines 543--545
  [] 
  []
 
 <../gambar/2_Boxplot_Distribusi Kemiskinan.png, id=83, 867.24pt x 289.08pt>
 File: ../gambar/2_Boxplot_Distribusi Kemiskinan.png Graphic file (type png)
 <use ../gambar/2_Boxplot_Distribusi Kemiskinan.png>
-Package pdftex.def Info: ../gambar/2_Boxplot_Distribusi Kemiskinan.png  used on input line 549.
+Package pdftex.def Info: ../gambar/2_Boxplot_Distribusi Kemiskinan.png  used on input line 548.
 (pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
 
-Overfull \hbox (1.3619pt too wide) in alignment at lines 546--568
+Overfull \hbox (1.3619pt too wide) in alignment at lines 545--567
  [] 
  []
 
@@ -558,48 +558,48 @@ Overfull \hbox (1.3619pt too wide) in alignment at lines 546--568
 <../gambar/3_LineChart_PDRB per Tahun.png, id=92, 867.24pt x 289.08pt>
 File: ../gambar/3_LineChart_PDRB per Tahun.png Graphic file (type png)
 <use ../gambar/3_LineChart_PDRB per Tahun.png>
-Package pdftex.def Info: ../gambar/3_LineChart_PDRB per Tahun.png  used on input line 574.
+Package pdftex.def Info: ../gambar/3_LineChart_PDRB per Tahun.png  used on input line 573.
 (pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
 <../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png, id=93, 867.24pt x 289.08pt>
 File: ../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png Graphic file (type png)
 <use ../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png>
-Package pdftex.def Info: ../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png  used on input line 595.
+Package pdftex.def Info: ../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png  used on input line 594.
 (pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
 <../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png, id=94, 867.24pt x 289.08pt>
 File: ../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png Graphic file (type png)
 <use ../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png>
-Package pdftex.def Info: ../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png  used on input line 617.
+Package pdftex.def Info: ../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png  used on input line 616.
 (pdftex.def)             Requested size: 867.2379pt x 289.07928pt.
 [9 <../gambar/3_LineChart_PDRB per Tahun.png> <../gambar/4_Lolipop chart_IPM per Provinsi Berdasarkan Tahun.png>] [10 <../gambar/5_Heatmap_Harapan Hidup Setiap Tahun.png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 682.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 681.
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 740--750
+Underfull \hbox (badness 10000) in paragraph at lines 739--749
 \T1/lmtt/m/n/10 Jawa (khususnya provinsi seperti Jawa Tengah dan Banten) \T1/lmr/m/n/10 cen-derung men-dom-i-nasi ca-pa-ian
  []
 
 [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 826--831
+Underfull \hbox (badness 10000) in paragraph at lines 825--830
 \T1/lmr/m/n/10 publication / 361649540 _ Implementation _ of _ Winsorizing _ and _ random _ oversampling _ on _ data _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--831
+Underfull \hbox (badness 10000) in paragraph at lines 825--830
 \T1/lmr/m/n/10 containing _ outliers _ and _ unbalanced _ data _ with _ the _ random _ forest _ classi^^\cation _ method /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--831
+Underfull \hbox (badness 10000) in paragraph at lines 825--830
 \T1/lmr/m/n/10 links / 62bded9fd53e0b7114bebc3a / Implementation -[] of -[] Winsorizing -[] and -[] random -[] oversampling -[] on -[]
  []
 
 [14] [15] [16]
-Overfull \hbox (102.49332pt too wide) in paragraph at lines 1014--1014
+Overfull \hbox (102.49332pt too wide) in paragraph at lines 1013--1013
 []\T1/lmtt/m/n/10 ##  $ wilayah          : chr  "Kabupaten/Kota_1" "Kabupaten/Kota_2" "Kabupaten/Kota_3" "Kabupaten/Kota_4" ...[] 
  []
 
 
-Overfull \hbox (13.24358pt too wide) in paragraph at lines 1014--1014
+Overfull \hbox (13.24358pt too wide) in paragraph at lines 1013--1013
 []\T1/lmtt/m/n/10 ##  $ provinsi         : chr  "Jawa Barat" "Jawa Timur" "Kalimantan Timur" "DKI Jakarta" ...[] 
  []
 
@@ -607,48 +607,48 @@ Overfull \hbox (13.24358pt too wide) in paragraph at lines 1014--1014
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf, id=188, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 1312.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 1311.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf, id=189, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf  used on input line 1322.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf  used on input line 1321.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [21 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-1.pdf>]
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf, id=200, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf  used on input line 1332.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf  used on input line 1331.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [22 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-2.pdf>] [23 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-3.pdf>] [24]
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf, id=225, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf  used on input line 1478.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf  used on input line 1477.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [25]
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf, id=231, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf  used on input line 1497.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf  used on input line 1496.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [26 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-4.pdf>]
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf, id=241, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf  used on input line 1518.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf  used on input line 1517.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [27 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-5.pdf>]
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf, id=251, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf  used on input line 1551.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf  used on input line 1550.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [28 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-6.pdf>]
 <laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf, id=261, 469.755pt x 325.215pt>
 File: laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf Graphic file (type pdf)
 <use laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf>
-Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf  used on input line 1575.
+Package pdftex.def Info: laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf  used on input line 1574.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [29 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-7.pdf>] [30 <./laporan_probstat_files/figure-latex/unnamed-chunk-1-8.pdf>] [31] [32] (./laporan_probstat.aux)
  ***********
@@ -665,7 +665,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  88i,11n,93p,629b,636s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/muham/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on laporan_probstat.pdf (32 pages, 1343830 bytes).
+Output written on laporan_probstat.pdf (32 pages, 1343826 bytes).
 PDF statistics:
  445 PDF objects out of 1000 (max. 8388607)
  349 compressed objects within 4 object streams
