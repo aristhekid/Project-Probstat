@@ -82,6 +82,7 @@ Dataset utama yang dianalisis dalam proyek ini berjudul `pembangunan_wilayah_mis
 -   **kemiskinan & pengangguran:** Indikator tingkat ketimpangan sosial dan penyerapan ketenagakerjaan daerah.
 -   **ipm, harapan_hidup, & rata_lama_sekolah:** Representasi dimensi capaian kualitas hidup, kesehatan, dan tingkat pendidikan masyarakat.
 -   **akses_internet, jalan_baik, & air_bersih:** Ketersediaan dan kualitas infrastruktur pendukung kesejahteraan wilayah.
+-   **catatan_data:** Normal atau *missing value*
 
 ## 2.2 Tools yang Digunakan
 
@@ -106,9 +107,6 @@ Tahapan pengolahan data statistik yang diterapkan dalam proyek ini mengacu pada 
 \newpage
 
 # BAB III HASIL DAN PEMBAHASAN
-
-
-
 
 ## 3.2 Analisis Statistika Deskriptif
 
@@ -136,13 +134,11 @@ Air Bersih & 69.76 & 17.50 & Normal \\
 \end{tabular}
 \end{center}
 
-
 Berdasarkan komputasi dari eksekusi fungsi dasar statistik, diperoleh beberapa temuan utama:
 
 -   **Variabel dengan Rata-Rata dan Penyebaran Tertinggi:** Variabel `pdrb_perkapita` menjadi indikator dengan **nilai rata-rata tertinggi** (135.650.462) sekaligus memiliki **penyebaran (varians dan standar deviasi) yang paling besar**. Hal ini sangat logis mengingat PDRB direkam dalam satuan mata uang absolut dengan skala rasio yang besar, sehingga variasinya antardaerah akan terlihat sangat ekstrem dibandingkan variabel lain yang direkam dalam satuan persentase.
 -   **Indikasi Data Tidak Normal:** Terdapat petunjuk kuat adanya sebaran data yang tidak normal pada beberapa variabel. Sebagai contoh, rata-rata kemiskinan berada di angka **13,72%** namun memiliki simpangan baku (standar deviasi) yang cukup tinggi yaitu **6,89**. Selisih yang signifikan antara rata-rata dan median pada variabel makro juga memberikan sinyal adanya kemencengan distribusi (*skewness*) akibat keberadaan kelompok minoritas data pencilan (*outlier*), yang akan ditelusuri lebih lanjut pada tahapan analisis outlier.
 -   **Indeks Pembangunan Manusia (IPM):** Berada pada rentang nilai minimum **55,01** hingga maksimum **84,99**, dengan rata-rata capaian nasional sebesar **69,90**.
-
 
 ## 3.3 Analisis Missing Value
 
@@ -168,14 +164,11 @@ Air Bersih & 0 \\
 \end{tabular}
 \end{center}
 
-
 Pemeriksaan ketidaklengkapan data secara menyeluruh dilakukan menggunakan fungsi `colSums(is.na(data))` untuk melihat jumlah data kosong per kolom. Ditemukan adanya data kosong (*missing value*) berupa nilai `NA` yang tersebar secara acak pada beberapa variabel indikator numerik, dengan total keseluruhan data kosong sebanyak **149 observasi**.
 
 Sesuai dengan kesepakatan tim, metode penanganan yang dipilih adalah *Complete Case Analysis* menggunakan fungsi `na.omit()`. Prosedur ini menghapus seluruh baris observasi yang mengandung setidaknya satu nilai `NA`. Setelah dilakukan pembersihan ke dalam variabel `data_bersih`, validasi ulang menunjukkan angka 0 di semua kolom, menandakan persentase kekosongan data telah turun menjadi 0%.
 
-
 ## 3.4 Analisis Outlier
-
 
 \begin{figure}[htbp]
 \centering
@@ -203,7 +196,6 @@ Sesuai dengan kesepakatan tim, metode penanganan yang dipilih adalah *Complete C
 \caption{Boxplot Deteksi Outlier Variabel Utama}
 \end{figure}
 
-
 Deteksi pencilan (*outlier*) dihitung menggunakan fungsi kustom `cek_outlier()` yang mengadopsi metode pagar batas *Interquartile Range* (IQR). Analisis ini difokuskan pada tiga variabel utama yang secara visual dikonfirmasi memiliki pencilan melalui grafik `boxplot()`, yaitu `pdrb_perkapita` (**5 outlier**), `kemiskinan` (**5 outlier**), dan `pengangguran` (**5 outlier**).
 
 \begin{center}
@@ -230,7 +222,6 @@ Air Bersih & 0 \\
 
 Untuk mempertahankan ukuran sampel data yang sudah bersih, penanganan pencilan dilakukan dengan metode **Winsorizing**. Nilai data yang berada di luar ambang batas penentuan IQR diubah (*clipping*) secara paksa ke nilai ambang batas tersebut. Setelah dieksekusi, evaluasi ulang mengonfirmasi bahwa jumlah nilai ekstrem pada ketiga variabel telah direduksi menjadi 0, sehingga distribusi data menjadi lebih stabil untuk divisualisasikan tanpa ada baris data yang terbuang.
 
-
 ## 3.5 Visualisasi Data
 
 Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan metode agregasi `group_by()` dan `summarise()` dari *library* `dplyr`. Data dihitung rata-ratanya berdasarkan pengelompokan `provinsi` dan `tahun`. Pembuatan grafik menggunakan *library* `ggplot2` menghasilkan 5 visualisasi informatif yang telah dilengkapi dengan judul dan label sumbu yang jelas.
@@ -251,11 +242,12 @@ Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan meto
 | **Isi Grafik:** Visualisasi ini memotret sebaran persentase penduduk miskin secara nasional dari tahun ke tahun. Kotak (*box*) menunjukkan rentang data mayoritas (Kuartil 1 hingga Kuartil 3), sedangkan garis tengah kotak mewakili nilai median kemiskinan pada tahun tersebut.\                                                                  |
 | **Kesimpulan:** Distribusi tingkat kemiskinan di Indonesia terlihat cenderung meningkat dari tahun 2020 hingga 2024, yang ditandai dengan pergerakan garis median. Tidak terlihat adanya titik-titik di luar batas *whisker*, membuktikan bahwa penanganan pencilan (*outlier*) menggunakan metode Winsorizing pada tahap sebelumnya telah berhasil. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 \newpage
 
 ![Gambar 3 BoxPlot LineChart PDRB per Tahun](../gambar/3_LineChart_PDRB%20per%20Tahun.png)
 
-**Penjelasan Grafik 3 (Line Chart PDRB)** \* 
+**Penjelasan Grafik 3 (Line Chart PDRB)** \*
 
 **Isi Grafik:** Grafik garis ini melacak lintasan pertumbuhan ekonomi (PDRB per kapita) setiap provinsi (sumbu Y) seiring berjalannya waktu dari tahun 2020 hingga 2024 (sumbu X). Masing-masing garis mewakili satu provinsi yang berbeda. \*
 
@@ -265,9 +257,9 @@ Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan meto
 
 ![Gambar 4 Lolipop chart IPM per Provinsi Berdasarkan Tahun](../gambar/4_Lolipop%20chart_IPM%20per%20Provinsi%20Berdasarkan%20Tahun.png)
 
-**Penjelasan Grafik 4 (Lollipop Chart IPM)** \* 
+**Penjelasan Grafik 4 (Lollipop Chart IPM)** \*
 
-**Isi Grafik:** Grafik ini merupakan modifikasi dari *bar chart* yang dirancang untuk mempermudah pembacaan peringkat. Sumbu X menunjukkan Indeks Pembangunan Manusia (IPM) dan sumbu Y adalah nama provinsi. Batas bawah sumbu X diatur pada angka 50 agar perbedaan jarak nilai IPM antar-provinsi terlihat lebih kontras. \* 
+**Isi Grafik:** Grafik ini merupakan modifikasi dari *bar chart* yang dirancang untuk mempermudah pembacaan peringkat. Sumbu X menunjukkan Indeks Pembangunan Manusia (IPM) dan sumbu Y adalah nama provinsi. Batas bawah sumbu X diatur pada angka 50 agar perbedaan jarak nilai IPM antar-provinsi terlihat lebih kontras. \*
 
 **Kesimpulan:** Terlihat jelas *ranking* kualitas pembangunan manusia antardaerah. Provinsi Banten adalah wilayah dengan capaian kualitas hidup, pendidikan, dan kesehatan paling maju, sedangkan wilayah DKI Jakarta masih tertinggal dan membutuhkan atensi akselerasi pembangunan dasar.
 
@@ -275,9 +267,9 @@ Sebelum divisualisasikan, dataset bersih diolah terlebih dahulu menggunakan meto
 
 ![Gambar 5 Heatmap Harapan Hidup Setiap Tahun](../gambar/5_Heatmap_Harapan%20Hidup%20Setiap%20Tahun.png)
 
-**Penjelasan Grafik 5 (Heatmap Harapan Hidup)** \* 
+**Penjelasan Grafik 5 (Heatmap Harapan Hidup)** \*
 
-**Isi Grafik:** Visualisasi matriks ini memetakan angka harapan hidup berdasarkan pertemuan antara tahun (sumbu X) dan provinsi (sumbu Y). Intensitas capaian direpresentasikan melalui gradasi warna; warna merah tua menunjukkan angka harapan hidup tinggi, sedangkan merah muda menunjukkan angka yang lebih rendah. \* 
+**Isi Grafik:** Visualisasi matriks ini memetakan angka harapan hidup berdasarkan pertemuan antara tahun (sumbu X) dan provinsi (sumbu Y). Intensitas capaian direpresentasikan melalui gradasi warna; warna merah tua menunjukkan angka harapan hidup tinggi, sedangkan merah muda menunjukkan angka yang lebih rendah. \*
 
 **Kesimpulan:** Secara keseluruhan, indikator kesehatan masyarakat mengalami tren perbaikan. Hal ini disimpulkan dari perubahan dominasi warna pada grafik yang semakin bergeser ke arah warna merah gelap seiring bertambahnya tahun.
 
@@ -354,12 +346,11 @@ Berlandaskan hasil analisis data dan kesimpulan objektif di atas, berikut adalah
 
 ## Daftar Pustaka
 
-1.  [BPS] Badan Pusat Statistik. 2024. Indeks Pembangunan Manusia 2024 [Internet]. Jakarta (ID): BPS; [diakses 2026 Jun 8]. https://www.bps.go.id/id/pressrelease/2024/11/15/2296.
-2.  [BPS] Badan Pusat Statistik. 2024. Profil Kemiskinan di Indonesia Maret 2024 [Internet]. Jakarta (ID): BPS; [diakses 2026 Jun 8]. https://kukarkab.bps.go.id/id/pressrelease/2025/01/07/1019/profil-kemiskinan-di-indonesia-maret-2024.html
-3.  Shapiro SS, Wilk MB. 1965. An analysis of variance test for normality (complete samples). *Biometrika* [Internet]. 52(3):591-611; [diakses 2026 Jun 8]. https://doi.org/10.2307/2333709.
-4.  Zhu H, You X, Liu S. 2019. Multiple ant colony optimization based on pearson correlation coefficient. *IEEE Access*. 7:61628-61638. https://ieeexplore.ieee.org/abstract/document/8709963
-5.  Zibedi F, Sartomo B, Notodiputro KA .2022. Implementation of Winsorizing and random oversampling on data containing outliers and unbalanced data with the random forest classification method. *Jurnal Naturan*. 22(2):108-116. https://www.researchgate.net/profile/Fahrezal-Zubedi/publication/361649540_Implementation_of_Winsorizing_and_random_oversampling_on_data_containing_outliers_and_unbalanced_data_with_the_random_forest_classification_method/links/62bded9fd53e0b7114bebc3a/Implementation-of-Winsorizing-and-random-oversampling-on-data-containing-outliers-and-unbalanced-data-with-the-random-forest-classification-method.pdf
-  
+1.  [BPS] Badan Pusat Statistik. 2024. Indeks Pembangunan Manusia 2024 [Internet]. Jakarta (ID): BPS; [diakses 2026 Jun 8]. <https://www.bps.go.id/id/pressrelease/2024/11/15/2296>.
+2.  [BPS] Badan Pusat Statistik. 2024. Profil Kemiskinan di Indonesia Maret 2024 [Internet]. Jakarta (ID): BPS; [diakses 2026 Jun 8]. <https://kukarkab.bps.go.id/id/pressrelease/2025/01/07/1019/profil-kemiskinan-di-indonesia-maret-2024.html>
+3.  Shapiro SS, Wilk MB. 1965. An analysis of variance test for normality (complete samples). *Biometrika* [Internet]. 52(3):591-611; [diakses 2026 Jun 8]. <https://doi.org/10.2307/2333709>.
+4.  Zhu H, You X, Liu S. 2019. Multiple ant colony optimization based on pearson correlation coefficient. *IEEE Access*. 7:61628-61638. <https://ieeexplore.ieee.org/abstract/document/8709963>
+5.  Zibedi F, Sartomo B, Notodiputro KA .2022. Implementation of Winsorizing and random oversampling on data containing outliers and unbalanced data with the random forest classification method. *Jurnal Naturan*. 22(2):108-116. <https://www.researchgate.net/profile/Fahrezal-Zubedi/publication/361649540_Implementation_of_Winsorizing_and_random_oversampling_on_data_containing_outliers_and_unbalanced_data_with_the_random_forest_classification_method/links/62bded9fd53e0b7114bebc3a/Implementation-of-Winsorizing-and-random-oversampling-on-data-containing-outliers-and-unbalanced-data-with-the-random-forest-classification-method.pdf>
 
 \newpage
 
@@ -715,4 +706,5 @@ if(r < 0.20){
   print("Kekuatan hubungan: Sangat Kuat")
 }
 ```
-```
+
+\`\`\`
